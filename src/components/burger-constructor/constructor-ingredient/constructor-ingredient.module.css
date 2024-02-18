@@ -1,0 +1,7 @@
+.ingredient {
+  margin: 16px auto;
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+

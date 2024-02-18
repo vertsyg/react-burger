@@ -1,0 +1,22 @@
+.burger_constructor {
+  padding-top: 100px;
+}
+
+.burger_constructor > *:first-child,
+.burger_constructor > *:nth-last-child(2) {
+  margin-left: 32px;
+}
+
+.order {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.order_price {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
