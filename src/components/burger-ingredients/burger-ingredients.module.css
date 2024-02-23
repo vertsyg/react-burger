@@ -6,7 +6,26 @@
   display: flex;
 }
 
-/* .ingredient_groups {
-  overflow-y: scroll;
-  max-height: calc(100vh-90px-40px-40px-56px-40px);
-} */
+.ingredient_groups {
+  overflow-y: auto;
+  height: calc(100vh - 90px - 40px - 40px - 56px - 40px);
+  scrollbar-width: thin;
+}
+
+/* TODO: сомнительно, что-то тут не так🧐 */
+.ingredient_groups::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.ingredient_groups::-webkit-scrollbar {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.ingredient_groups::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}

@@ -1,4 +1,4 @@
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient-item.module.css'
 
 export interface BurgerIngredientsItemProps {
@@ -19,6 +19,7 @@ export interface BurgerIngredientsItemProps {
 const IngredientItem = ({name, price, image}: BurgerIngredientsItemProps) => {
   return (
     <div className={styles.ingredient_item}>
+      <Counter count={1}/>
       <img src={image} alt={name}/>
       <div className={styles.ingredient_price}>
         {price}

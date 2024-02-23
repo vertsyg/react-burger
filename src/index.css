@@ -26,17 +26,11 @@ a {
   text-decoration: none;
 }
 
-/* .App {
-  max-height: 100vh;
-  height: 100vh;
-  overflow-y: hidden;
-} */
-
 main {
   width: 1240px;
   margin: 0 auto;
   display: flex;
-  gap: 40px
+  gap: 70px;
 }
 
 section {

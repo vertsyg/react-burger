@@ -25,9 +25,11 @@ const BurgerConstructor = ({items} : BurgerConstructorProps) => {
         price={buns[0].price}
         thumbnail={buns[0].image}
       />
-      {ingredients.map((cartItem) => 
-        <ConstructorIngredient key={cartItem._id} {...cartItem}/>
-      )}
+      <div className={styles.ingredients}>
+        {ingredients.map((cartItem) => 
+          <ConstructorIngredient key={cartItem._id} {...cartItem}/>
+        )}
+      </div>
       <ConstructorElement
         type="bottom"
         isLocked={true}

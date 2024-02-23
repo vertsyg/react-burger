@@ -17,8 +17,8 @@ const IngredientGroup = ({title, items} : IngredientGroupProps) => {
               return (
                 <IngredientItem key={item._id} {...item}/>
               )
-            })}           
-            </div>        
+            })}
+          </div>
         </li>
       </ul>
     </div>
