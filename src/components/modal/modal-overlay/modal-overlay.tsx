@@ -3,7 +3,6 @@ import styles from './modal_overlay.module.css'
 
 interface ModalOverlayProps {
   handleClose: () => void,
-  // children: ReactNode
 }
 
 const ModalOverlay: FC<PropsWithChildren<ModalOverlayProps>> = ({ handleClose, children }) => {

@@ -18,15 +18,15 @@ export interface BurgerIngredientsItemProps {
   __v: number
 }
 
-const IngredientItem = ({name, price, image}: BurgerIngredientsItemProps) => {
-
+const IngredientItem = (props: BurgerIngredientsItemProps) => {
+  const {name, price, image} = props
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleOpen = () => setIsModalOpen(!isModalOpen)
 
   return (
     <>
-      { isModalOpen && <IngredientDetails ingredientInfo={name} handleClose={handleOpen}/>}
+      { isModalOpen && <IngredientDetails ingredientInfo={props} handleClose={handleOpen}/>}
       <div className={styles.ingredient_item}  onClick={handleOpen}>
         <Counter count={1}/>
         <img src={image} alt={name}/>
