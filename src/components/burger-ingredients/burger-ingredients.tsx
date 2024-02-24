@@ -1,22 +1,9 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import { BurgerIngredientsItemProps } from './ingredient-item/ingredient-item'
 import IngredientGroup from './ingredients-group/ingredients-group'
 import { groupIngredientsByType } from '../../utils/groupIngredientsByType'
-
-const tabsArr = [
-  {
-    value: 'bun', 
-    text: 'Булки'
-  }, {
-    value: 'sauce', 
-    text: 'Соусы'    
-  }, {
-    value: 'main', 
-    text: 'Начинки'    
-  }
-] 
 
 interface BurgerIngredientsProps {
   items: BurgerIngredientsItemProps[]
@@ -25,6 +12,31 @@ interface BurgerIngredientsProps {
 const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
 
   const [current, setCurrent] = useState('bun')
+
+  const bunRef = useRef<HTMLDivElement>(null)
+  const sauceRef = useRef<HTMLDivElement>(null)
+  const mainRef = useRef<HTMLDivElement>(null)
+
+  const tabsArr = [
+    {
+      value: 'bun',
+      text: 'Булки',
+      ref: bunRef
+    }, {
+      value: 'sauce',
+      text: 'Соусы',
+      ref: sauceRef
+    }, {
+      value: 'main', 
+      text: 'Начинки',
+      ref: mainRef
+    }
+  ] 
+
+  const handleTabClick = (tabValue: string) => {
+    setCurrent(tabValue)
+    tabsArr.find(tab => tabValue === tab.value)?.ref.current?.scrollIntoView({behavior: 'smooth'})
+  }
 
   return (
     <section className={styles.burger_ingredients}>
@@ -35,18 +47,29 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
             return <Tab
               value={value}
               active={current === value}
-              onClick={setCurrent}
+              onClick={handleTabClick}
               children={text}
               key={value}
             />
           })
         }
       </div>
-      {/* TODO: скролл*/}
-      <div className={styles.ingredient_groups}>
-        <IngredientGroup title='Булки' items={groupIngredientsByType(items, 'bun')}/>
-        <IngredientGroup title='Соусы' items={groupIngredientsByType(items, 'sauce')}/>
-        <IngredientGroup title='Начинки' items={groupIngredientsByType(items, 'main')}/>
+      <div className={`${styles.ingredient_groups} custom-scroll`}>
+        <IngredientGroup 
+          title='Булки' 
+          items={groupIngredientsByType(items, 'bun')}
+          ref={bunRef}
+        />
+        <IngredientGroup 
+          title='Соусы' 
+          items={groupIngredientsByType(items, 'sauce')}
+          ref={sauceRef}
+        />
+        <IngredientGroup 
+          title='Начинки' 
+          items={groupIngredientsByType(items, 'main')}
+          ref={mainRef}
+        />
       </div>
     </section>
   )

@@ -1,14 +1,15 @@
+import { forwardRef } from 'react'
 import IngredientItem, { BurgerIngredientsItemProps } from '../ingredient-item/ingredient-item'
 import styles from './ingredients-group.module.css'
 
 interface IngredientGroupProps {
   title: string,
-  items: BurgerIngredientsItemProps[]
+  items: BurgerIngredientsItemProps[],
 }
 
-const IngredientGroup = ({title, items} : IngredientGroupProps) => {
+export const IngredientGroup = forwardRef<HTMLDivElement, IngredientGroupProps>(({title, items} : IngredientGroupProps, ref) => {
   return (
-    <div className={styles.ingredient_group}>
+    <div className={styles.ingredient_group} ref={ref}>
       <h3 className="text text_type_main-medium">{title}</h3>
       <ul>
         <li>
@@ -23,6 +24,6 @@ const IngredientGroup = ({title, items} : IngredientGroupProps) => {
       </ul>
     </div>
   )
-}
+})
 
 export default IngredientGroup
