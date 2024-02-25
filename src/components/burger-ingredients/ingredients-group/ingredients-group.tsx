@@ -16,7 +16,7 @@ export const IngredientGroup = forwardRef<HTMLDivElement, IngredientGroupProps>(
           <div className={styles.ingredient_items}>
             {items.map(item => {
               return (
-                <IngredientItem key={item._id} {...item}/>
+                <IngredientItem key={item._id} ingredient={item}/>
               )
             })}
           </div>

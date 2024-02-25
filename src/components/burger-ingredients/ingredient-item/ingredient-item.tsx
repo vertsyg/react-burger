@@ -2,6 +2,7 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import styles from './ingredient-item.module.css'
 import { useState } from 'react'
 import IngredientDetails from '../ingredient-details/ingredient-details'
+import Modal from '../../modal/modal'
 
 export interface BurgerIngredientsItemProps {
   _id: string,
@@ -18,15 +19,23 @@ export interface BurgerIngredientsItemProps {
   __v: number
 }
 
-const IngredientItem = (props: BurgerIngredientsItemProps) => {
-  const {name, price, image} = props
+interface IngredientItemProps {
+  ingredient: BurgerIngredientsItemProps;
+}
+
+const IngredientItem = ({ingredient}: IngredientItemProps) => {
+  const {name, price, image} = ingredient
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleOpen = () => setIsModalOpen(!isModalOpen)
 
   return (
     <>
-      { isModalOpen && <IngredientDetails ingredientInfo={props} handleClose={handleOpen}/>}
+      { isModalOpen && 
+        <Modal title='Детали ингредиента' handleClose={handleOpen}>
+          <IngredientDetails ingredientInfo={ingredient}/>
+        </Modal>
+      }
       <div className={styles.ingredient_item}  onClick={handleOpen}>
         <Counter count={1}/>
         <img src={image} alt={name}/>

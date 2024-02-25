@@ -4,6 +4,7 @@ import styles from './burger-constructor.module.css'
 import ConstructorIngredient from './constructor-ingredient/constructor-ingredient'
 import { useState } from 'react'
 import OrderDetails from './order-details/order-details'
+import Modal from '../modal/modal'
 
 interface BurgerConstructorProps {
   items: BurgerIngredientsItemProps[]
@@ -23,7 +24,11 @@ const BurgerConstructor = ({items} : BurgerConstructorProps) => {
 
   return (
     <>
-      { isModalOpen && <OrderDetails handleClose={handleOpen} />}
+      { isModalOpen && 
+        <Modal handleClose={handleOpen}>
+          <OrderDetails/>
+        </Modal>
+      }
       <section className={styles.burger_constructor}>
         <ConstructorElement
           type="top"

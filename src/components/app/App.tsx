@@ -18,6 +18,7 @@ function App() {
         setData(responseData);
         setLoading(false);
       } catch (error) {
+        console.error(error);
         setError(true);
         setLoading(false);
       }

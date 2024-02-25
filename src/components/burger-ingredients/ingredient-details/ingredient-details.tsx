@@ -5,13 +5,12 @@ import styles from './ingredient-details.module.css'
 
 interface IngredientDetailsProps {
   ingredientInfo: BurgerIngredientsItemProps,
-  handleClose: () => void
 }
 
-const IngredientDetails = ({ingredientInfo, handleClose} : IngredientDetailsProps) => {
+const IngredientDetails = ({ingredientInfo} : IngredientDetailsProps) => {
   const {image_large, name, calories, proteins, fat, carbohydrates} = ingredientInfo
   return (
-    <Modal title='Детали ингредиента' handleClose={handleClose}>
+    <>
       <img src={image_large} alt={name} className={styles.image}/>
       <h2>{name}</h2>
       <div className={styles.nutrition_group}>
@@ -20,7 +19,7 @@ const IngredientDetails = ({ingredientInfo, handleClose} : IngredientDetailsProp
         <NutritionInfo title='Жиры, г' value={fat}/>
         <NutritionInfo title='Углеводы, г' value={carbohydrates}/>
       </div>
-    </Modal>
+    </>
   )
 }
 

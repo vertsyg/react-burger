@@ -30,7 +30,7 @@ const Modal:  FC<PropsWithChildren<ModalProps>> = ({title, handleClose, children
   return createPortal(
     (
       <ModalOverlay handleClose={handleClose}>
-        <div onClick={e => e.stopPropagation} className={styles.modal}>
+        <div onClick={e => e.stopPropagation()} className={styles.modal}>
             <div className={styles.modal_header}>
               <h1 className="text text_type_main-large">{title}</h1>
               <CloseIcon type='primary' onClick={handleClose}/>
