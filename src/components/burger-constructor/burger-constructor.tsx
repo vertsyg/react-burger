@@ -2,18 +2,16 @@ import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-de
 import { BurgerIngredientsItemProps } from '../burger-ingredients/ingredient-item/ingredient-item'
 import styles from './burger-constructor.module.css'
 import ConstructorIngredient from './constructor-ingredient/constructor-ingredient'
-import { useState } from 'react'
 import OrderDetails from './order-details/order-details'
 import Modal from '../modal/modal'
+import { useModal } from '../../hooks/useModal'
 
 interface BurgerConstructorProps {
   items: BurgerIngredientsItemProps[]
 }
 
 const BurgerConstructor = ({items} : BurgerConstructorProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const handleOpen = () => setIsModalOpen(!isModalOpen)
+  const { isModalOpen, openModal, closeModal } = useModal()
 
   const buns = items.filter(item => item.type === 'bun')
   const ingredients = items.filter(item => item.type !== 'bun')
@@ -25,7 +23,7 @@ const BurgerConstructor = ({items} : BurgerConstructorProps) => {
   return (
     <>
       { isModalOpen && 
-        <Modal handleClose={handleOpen}>
+        <Modal handleClose={closeModal}>
           <OrderDetails/>
         </Modal>
       }
@@ -56,7 +54,7 @@ const BurgerConstructor = ({items} : BurgerConstructorProps) => {
             </p>
             <CurrencyIcon type={'primary'}/>
           </div>
-          <Button htmlType="button" type="primary" size="large" onClick={handleOpen}>
+          <Button htmlType="button" type="primary" size="large" onClick={openModal}>
             Оформить заказ
           </Button>
         </div>

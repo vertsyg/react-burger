@@ -1,4 +1,3 @@
-import Modal from "../../modal/modal"
 import img from '../../../images/done.svg'
 import styles from './order-details.module.css'
 

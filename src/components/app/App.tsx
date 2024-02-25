@@ -16,10 +16,10 @@ function App() {
       try {
         const responseData = await fetchData();
         setData(responseData);
-        setLoading(false);
       } catch (error) {
         console.error(error);
         setError(true);
+      } finally {
         setLoading(false);
       }
     };

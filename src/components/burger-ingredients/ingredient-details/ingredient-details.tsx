@@ -1,4 +1,3 @@
-import Modal from "../../modal/modal"
 import { BurgerIngredientsItemProps } from "../ingredient-item/ingredient-item"
 import NutritionInfo from "./nutrition-info/nutrition-info"
 import styles from './ingredient-details.module.css'
