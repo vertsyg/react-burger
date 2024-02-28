@@ -1,0 +1,28 @@
+.burger_constructor {
+  padding-top: 100px;
+}
+
+.burger_constructor > *:first-child,
+.burger_constructor > *:nth-last-child(2) {
+  margin-left: 32px;
+}
+
+.ingredients {
+  overflow-y: auto;
+  height: calc(100vh - 90px - 40px - 40px - 56px - 40px - 40px - 64px - 64px - 40px);
+  scrollbar-width: thin;
+}
+
+.order {
+  margin-top: 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.order_price {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}

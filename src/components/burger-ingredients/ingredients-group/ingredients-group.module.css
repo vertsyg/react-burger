@@ -1,0 +1,11 @@
+.ingredient_group {
+  padding-top: 40px;
+}
+
+.ingredient_items {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 24px;
+} 
