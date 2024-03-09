@@ -17,7 +17,8 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
   const [current, setCurrent] = useState('bun')
   const [selectedIngredient, setSelectedIngredient] = useState<BurgerIngredientsItemProps | null>(null)
   const { isModalOpen, openModal, closeModal } = useModal()
-
+  
+  const tabsRef = useRef<HTMLDivElement>(null)
   const bunRef = useRef<HTMLDivElement>(null)
   const sauceRef = useRef<HTMLDivElement>(null)
   const mainRef = useRef<HTMLDivElement>(null)
@@ -48,6 +49,28 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
     openModal();
   }
 
+  const handleIngredientsScroll = () => {
+    if (!tabsRef.current) {
+      return; 
+    }
+    
+    const tabsTop = tabsRef.current.getBoundingClientRect().top;
+    let minValue = Infinity; 
+    let closestValue;
+  
+    for (let tab of tabsArr) {
+      if (tab.ref?.current) {
+        const delta = Math.abs(tabsTop - tab.ref.current.getBoundingClientRect().top);
+        if (delta < minValue) {
+          minValue = delta;
+          closestValue = tab.value;
+
+          setCurrent(closestValue);
+        }
+      }
+    } 
+  };
+
   return (
     <>
       { isModalOpen && selectedIngredient &&
@@ -70,7 +93,11 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
             })
           }
         </div>
-        <div className={`${styles.ingredient_groups} custom-scroll`}>
+        <div 
+          className={`${styles.ingredient_groups} custom-scroll`}
+          ref={tabsRef}
+          onScroll={handleIngredientsScroll}
+        >
           <IngredientGroup 
             title='Булки' 
             items={groupIngredientsByType(items, 'bun')}
@@ -91,7 +118,6 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
           />
         </div>
       </section>
-    
     </>
   )
 }
