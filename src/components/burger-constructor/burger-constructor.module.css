@@ -7,9 +7,13 @@
   margin-left: 32px;
 }
 
+.burger_constructor > *:nth-last-child(2) {
+  margin-top: 3px;
+}
+
 .ingredients {
   overflow-y: auto;
-  height: calc(100vh - 90px - 40px - 40px - 56px - 40px - 40px - 64px - 64px - 40px);
+  max-height: calc(100vh - 90px - 40px - 40px - 56px - 40px - 40px - 64px - 64px - 40px);
   scrollbar-width: thin;
 }
 

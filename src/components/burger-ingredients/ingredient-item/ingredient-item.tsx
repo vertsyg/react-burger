@@ -1,5 +1,10 @@
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient-item.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { openIngredientModal } from '../../../services/actions/ingredients';
+import { useDrag } from 'react-dnd';
+import { getBurgerConstructorBun, getBurgerConstructorIngredients } from '../../../services/selectors';
+import { getCount } from '../../../utils/getCount';
 
 export interface BurgerIngredientsItemProps {
   _id: string,
@@ -13,20 +18,38 @@ export interface BurgerIngredientsItemProps {
   image: string,
   image_mobile: string,
   image_large: string,
-  __v: number
+  __v: number,
+  uuid?: string
 }
 
 interface IngredientItemProps {
   ingredient: BurgerIngredientsItemProps;
-  handleClick: (ingredient: BurgerIngredientsItemProps) => void
 }
 
-const IngredientItem = ({ingredient, handleClick}: IngredientItemProps) => {
-  const {name, price, image} = ingredient
+const IngredientItem = ({ingredient}: IngredientItemProps) => {
+  const {name, price, image, _id} = ingredient
+  const dispatch = useDispatch()
+  const ingredientItems = useSelector(getBurgerConstructorIngredients)
+  const bunItem = useSelector(getBurgerConstructorBun)
+  const [, dragRef] = useDrag({
+    type: 'burgerConstructor',
+    item: ingredient
+  })
+
+  const openIngredientsModal = () => {
+    dispatch(openIngredientModal(ingredient))
+  }
+
+  const allIngredients = bunItem ? [bunItem, ...ingredientItems] : ingredientItems
+  const count = getCount(allIngredients, _id)
 
   return (
-    <div className={styles.ingredient_item} onClick={() => handleClick(ingredient)}>
-      <Counter count={1}/>
+    <div 
+      className={styles.ingredient_item} 
+      onClick={openIngredientsModal}
+      ref = {dragRef}
+    > 
+      {count !== 0 ? <Counter count={count}/> : ''}
       <img src={image} alt={name}/>
       <div className={styles.ingredient_price}>
         {price}

@@ -1,22 +1,22 @@
 import { useRef, useState } from 'react'
 import styles from './burger-ingredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import { BurgerIngredientsItemProps } from './ingredient-item/ingredient-item'
 import IngredientGroup from './ingredients-group/ingredients-group'
 import { groupIngredientsByType } from '../../utils/groupIngredientsByType'
-import { useModal } from '../../hooks/useModal'
 import Modal from '../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeIngredientModal } from '../../services/actions/ingredients'
+import { getBurgerIngredients, getIsModalOpen, getSelectedIngredient } from '../../services/selectors'
 
-interface BurgerIngredientsProps {
-  items: BurgerIngredientsItemProps[]
-}
-
-const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
+const BurgerIngredients = () => {
 
   const [current, setCurrent] = useState('bun')
-  const [selectedIngredient, setSelectedIngredient] = useState<BurgerIngredientsItemProps | null>(null)
-  const { isModalOpen, openModal, closeModal } = useModal()
+  
+  const dispatch = useDispatch()
+  const items = useSelector(getBurgerIngredients)
+  const isModalOpen = useSelector(getIsModalOpen)
+  const selectedIngredient = useSelector(getSelectedIngredient)
   
   const tabsRef = useRef<HTMLDivElement>(null)
   const bunRef = useRef<HTMLDivElement>(null)
@@ -39,14 +39,13 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
     }
   ] 
 
+  const closeModal = () => {
+    dispatch(closeIngredientModal())
+  }
+
   const handleTabClick = (tabValue: string) => {
     setCurrent(tabValue)
     tabsArr.find(tab => tabValue === tab.value)?.ref.current?.scrollIntoView({behavior: 'smooth'})
-  }
-
-  const handleIngredientClick = (ingredient: BurgerIngredientsItemProps) => {
-    setSelectedIngredient(ingredient);
-    openModal();
   }
 
   const handleIngredientsScroll = () => {
@@ -75,7 +74,7 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
     <>
       { isModalOpen && selectedIngredient &&
         <Modal title='Детали ингредиента' handleClose={closeModal}>
-          <IngredientDetails ingredientInfo={selectedIngredient}/>
+          <IngredientDetails/>
         </Modal>
       }
       <section className={styles.burger_ingredients}>
@@ -102,19 +101,16 @@ const BurgerIngredients = ({items} : BurgerIngredientsProps) => {
             title='Булки' 
             items={groupIngredientsByType(items, 'bun')}
             ref={bunRef}
-            handleIngredientClick={handleIngredientClick}
           />
           <IngredientGroup 
             title='Соусы' 
             items={groupIngredientsByType(items, 'sauce')}
             ref={sauceRef}
-            handleIngredientClick={handleIngredientClick}
           />
           <IngredientGroup 
             title='Начинки' 
             items={groupIngredientsByType(items, 'main')}
             ref={mainRef}
-            handleIngredientClick={handleIngredientClick}
           />
         </div>
       </section>
