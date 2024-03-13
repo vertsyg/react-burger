@@ -1,10 +1,10 @@
 import styles from './constructor-ingredient.module.css'
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
 import { BurgerIngredientsItemProps } from "../../burger-ingredients/ingredient-item/ingredient-item"
-import { useDispatch } from 'react-redux'
 import { deleteIngredient } from '../../../services/actions/ingredients'
 import { useRef } from 'react'
 import { XYCoord, useDrag, useDrop } from 'react-dnd'
+import { useAppDispatch } from '../../../types/hooks'
 
 interface ConstructorIngredientProps {
   ingredient: BurgerIngredientsItemProps,
@@ -66,7 +66,7 @@ const ConstructorIngredient = ({ingredient, moveCard, index }:  ConstructorIngre
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
  
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const handleDeleteIngredient = () => {
     if (uuid) {
       dispatch(deleteIngredient(uuid))

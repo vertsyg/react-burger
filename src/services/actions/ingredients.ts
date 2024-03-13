@@ -3,6 +3,7 @@ import { fetchData } from "../../utils/fetchData"
 import { v4 as uuidv4 } from "uuid"
 import { sendOrderRequest } from "../../utils/sendOrderRequest"
 import { AppDispatch } from "../../types/hooks"
+import { request } from "../../utils/request"
 
 export const OPEN_INGREDIENT_MODAL = 'OPEN_INGREDIENT_MODAL'
 export const CLOSE_INGREDIENT_MODAL = 'CLOSE_INGREDIENT_MODAL'
@@ -52,8 +53,8 @@ export const getIngredients = () => (dispatch: AppDispatch) => {
   fetchData().then(res => {
     dispatch({
       type: GET_INGREDIENTS_SUCCESS,
-      ingredients: res
-    });
+      ingredients: res.data
+  });
   }).catch(err => {
     dispatch({
       type: GET_INGREDIENTS_ERROR,

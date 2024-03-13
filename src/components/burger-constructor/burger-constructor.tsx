@@ -3,18 +3,18 @@ import styles from './burger-constructor.module.css'
 import ConstructorIngredient from './constructor-ingredient/constructor-ingredient'
 import OrderDetails from './order-details/order-details'
 import Modal from '../modal/modal'
-import { useSelector } from 'react-redux'
+
 import { getBurgerConstructorBun, getBurgerConstructorIngredients, getOrderModalIsOpen} from '../../services/selectors'
 import { useDrop } from 'react-dnd'
-import { useAppDispatch } from '../../types/hooks'
+import { useAppDispatch, useAppSelector } from '../../types/hooks'
 import { addIngredient, clearConstructorIngredients, closeOrderModal, createOrder, openOrderModal, sortIngredients } from '../../services/actions/ingredients'
 import { BurgerIngredientsItemProps } from '../burger-ingredients/ingredient-item/ingredient-item'
 import { useCallback, useMemo } from 'react'
 
 const BurgerConstructor = () => {
-  const isModalOpen = useSelector(getOrderModalIsOpen)
-  const bun = useSelector(getBurgerConstructorBun)
-  const ingredients = useSelector(getBurgerConstructorIngredients)
+  const isModalOpen = useAppSelector(getOrderModalIsOpen)
+  const bun = useAppSelector(getBurgerConstructorBun)
+  const ingredients = useAppSelector(getBurgerConstructorIngredients)
 
   const dispatch = useAppDispatch()
 

@@ -5,18 +5,18 @@ import IngredientGroup from './ingredients-group/ingredients-group'
 import { groupIngredientsByType } from '../../utils/groupIngredientsByType'
 import Modal from '../modal/modal'
 import IngredientDetails from './ingredient-details/ingredient-details'
-import { useDispatch, useSelector } from 'react-redux'
 import { closeIngredientModal } from '../../services/actions/ingredients'
 import { getBurgerIngredients, getIsModalOpen, getSelectedIngredient } from '../../services/selectors'
+import { useAppDispatch, useAppSelector } from '../../types/hooks'
 
 const BurgerIngredients = () => {
 
   const [current, setCurrent] = useState('bun')
   
-  const dispatch = useDispatch()
-  const items = useSelector(getBurgerIngredients)
-  const isModalOpen = useSelector(getIsModalOpen)
-  const selectedIngredient = useSelector(getSelectedIngredient)
+  const dispatch = useAppDispatch()
+  const items = useAppSelector(getBurgerIngredients)
+  const isModalOpen = useAppSelector(getIsModalOpen)
+  const selectedIngredient = useAppSelector(getSelectedIngredient)
   
   const tabsRef = useRef<HTMLDivElement>(null)
   const bunRef = useRef<HTMLDivElement>(null)

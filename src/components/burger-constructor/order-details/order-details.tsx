@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux'
 import img from '../../../images/done.svg'
 import styles from './order-details.module.css'
 import { getBurgerOrderNumber } from '../../../services/selectors'
+import { useAppSelector } from '../../../types/hooks'
 
 const OrderDetails = () => {
-  const number = useSelector(getBurgerOrderNumber)
+  const number = useAppSelector(getBurgerOrderNumber)
   
   return (
     <>

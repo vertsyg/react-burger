@@ -1,10 +1,10 @@
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './ingredient-item.module.css'
-import { useDispatch, useSelector } from 'react-redux';
 import { openIngredientModal } from '../../../services/actions/ingredients';
 import { useDrag } from 'react-dnd';
 import { getBurgerConstructorBun, getBurgerConstructorIngredients } from '../../../services/selectors';
 import { getCount } from '../../../utils/getCount';
+import { useAppDispatch, useAppSelector } from '../../../types/hooks';
 
 export interface BurgerIngredientsItemProps {
   _id: string,
@@ -28,9 +28,9 @@ interface IngredientItemProps {
 
 const IngredientItem = ({ingredient}: IngredientItemProps) => {
   const {name, price, image, _id} = ingredient
-  const dispatch = useDispatch()
-  const ingredientItems = useSelector(getBurgerConstructorIngredients)
-  const bunItem = useSelector(getBurgerConstructorBun)
+  const dispatch = useAppDispatch()
+  const ingredientItems = useAppSelector(getBurgerConstructorIngredients)
+  const bunItem = useAppSelector(getBurgerConstructorBun)
   const [, dragRef] = useDrag({
     type: 'burgerConstructor',
     item: ingredient

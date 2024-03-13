@@ -1,10 +1,10 @@
 import NutritionInfo from "./nutrition-info/nutrition-info"
 import styles from './ingredient-details.module.css'
-import { useSelector } from "react-redux"
 import { getSelectedIngredient } from "../../../services/selectors"
+import { useAppSelector } from "../../../types/hooks"
 
 const IngredientDetails = () => {
-  const {image_large, name, calories, proteins, fat, carbohydrates} = useSelector(getSelectedIngredient)
+  const {image_large, name, calories, proteins, fat, carbohydrates} = useAppSelector(getSelectedIngredient)
 
   return (
     <>
