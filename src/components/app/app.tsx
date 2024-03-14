@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 import styles from './app.module.css'
-import { fetchData } from '../../utils/data';
+import { getIngredients } from '../../services/actions/ingredients';
+import { getError, getLoading } from '../../services/selectors';
+import { useAppDispatch, useAppSelector } from '../../types/hooks';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App() {
+  const loading = useAppSelector(getLoading)
+  const error = useAppSelector(getError)
 
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const responseData = await fetchData();
-        setData(responseData);
-      } catch (error) {
-        console.error(error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getData();
-  }, []);
+    dispatch(getIngredients())
+  }, [dispatch])
 
   return (
     <div className={styles.app}>
@@ -36,10 +28,10 @@ function App() {
         ) : error ? (
           <p>Кажется сегодня на пп</p>
         ) : (
-          <>
-            <BurgerIngredients items={data} />
-            <BurgerConstructor items={data} />
-          </>
+          <DndProvider backend={HTML5Backend}>
+            <BurgerIngredients/>
+            <BurgerConstructor/>
+          </DndProvider>
         )}
       </main>
     </div>

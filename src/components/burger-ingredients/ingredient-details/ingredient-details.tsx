@@ -1,13 +1,11 @@
-import { BurgerIngredientsItemProps } from "../ingredient-item/ingredient-item"
 import NutritionInfo from "./nutrition-info/nutrition-info"
 import styles from './ingredient-details.module.css'
+import { getSelectedIngredient } from "../../../services/selectors"
+import { useAppSelector } from "../../../types/hooks"
 
-interface IngredientDetailsProps {
-  ingredientInfo: BurgerIngredientsItemProps,
-}
+const IngredientDetails = () => {
+  const {image_large, name, calories, proteins, fat, carbohydrates} = useAppSelector(getSelectedIngredient)
 
-const IngredientDetails = ({ingredientInfo} : IngredientDetailsProps) => {
-  const {image_large, name, calories, proteins, fat, carbohydrates} = ingredientInfo
   return (
     <>
       <img src={image_large} alt={name} className={styles.image}/>
