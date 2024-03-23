@@ -1,3 +1,9 @@
+.modal {
+  width: 580px;
+  margin: auto;
+  text-align: center;
+}
+
 .nutrition_group {
   display: flex;
   flex-direction: row;

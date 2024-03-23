@@ -1,39 +1,39 @@
-import { useEffect } from 'react';
-import AppHeader from '../app-header/app-header';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients';
-import BurgerConstructor from '../burger-constructor/burger-constructor';
-import styles from './app.module.css'
-import { getIngredients } from '../../services/actions/ingredients';
-import { getError, getLoading } from '../../services/selectors';
-import { useAppDispatch, useAppSelector } from '../../types/hooks';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import AppHeader from '../app-header/app-header';import styles from './app.module.css'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { MainPage } from '../../pages/main-page/main-page';
+import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
+import Modal from '../modal/modal';
 
 function App() {
-  const loading = useAppSelector(getLoading)
-  const error = useAppSelector(getError)
 
-  const dispatch = useAppDispatch()
+  let location = useLocation()
+  let state = location.state as { backgroundLocation? : Location}
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    dispatch(getIngredients())
-  }, [dispatch])
+  const closeModal = () => {
+    navigate(-1)
+  }
 
   return (
     <div className={styles.app}>
       <AppHeader />
-      <main>
-        {loading ? (
-          <p>Загрузка</p>
-        ) : error ? (
-          <p>Кажется сегодня на пп</p>
-        ) : (
-          <DndProvider backend={HTML5Backend}>
-            <BurgerIngredients/>
-            <BurgerConstructor/>
-          </DndProvider>
-        )}
-      </main>
+      <Routes location={state?.backgroundLocation || location}>
+        <Route path='/' element={<MainPage/>}/>
+        <Route path='/ingredients/:ingredientId' element={<IngredientDetails/>}/>
+      </Routes>
+
+      {state?.backgroundLocation &&
+        <Routes>
+          <Route 
+            path='/ingredients/:ingredientId' 
+            element={
+              <Modal title='Детали ингредиента' handleClose={closeModal}>
+                <IngredientDetails/>
+              </Modal>
+            }
+          />
+        </Routes>
+      }
     </div>
   );
 }

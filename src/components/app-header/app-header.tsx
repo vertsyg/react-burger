@@ -1,6 +1,7 @@
 import { BurgerIcon, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './app-header.module.css'
 import HeaderButton from './header-button/header-button'
+import { Link } from 'react-router-dom'
 
 const AppHeader = () => {
   return (
@@ -14,7 +15,9 @@ const AppHeader = () => {
             <HeaderButton icon={ListIcon} text='Лента заказов' isActive={false}/>
           </li>
         </ul>
-        <Logo/>
+        <Link to='/'>
+          <Logo/>
+        </Link>
         <HeaderButton icon={ProfileIcon} text='Личный кабинет' isActive={false}/>
       </nav>
     </header>
