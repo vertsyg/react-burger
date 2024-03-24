@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../types/hooks"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { BurgerIngredientsItemProps } from "../ingredient-item/ingredient-item"
-import { fetchData } from "../../../utils/fetchData"
+import { fetchData } from "../../../utils/api"
 
 const IngredientDetails = () => {
   const { ingredientId } = useParams()
