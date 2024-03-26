@@ -15,6 +15,7 @@ import ProfileForm from '../profle/profile-form/profle-form';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../types/hooks';
 import { getUser } from '../../services/actions/user';
+import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 
 function App() {
 
@@ -39,12 +40,12 @@ function App() {
       <div className={styles.main}>    
         <Routes location={state?.backgroundLocation || location}>
           <Route path='/' element={<MainPage/>}/>
-          <Route path='/login' element={<LoginPage/>}/>
-          <Route path='/register' element={<RegisterPage/>}/>
-          <Route path='/forgot-password' element={<ForgotPasswordPage/>}/>
-          <Route path='/reset-password' element={<ResetPasswordPage/>}/>
+          <Route path='/login' element={<OnlyUnAuth component={<LoginPage/>}/>}/>
+          <Route path='/register' element={<OnlyUnAuth component={<RegisterPage/>}/>}/>
+          <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPasswordPage/>}/>}/>
+          <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPasswordPage/>}/>}/>
           <Route path='/feed' element={<FeedPage/>}/>
-          <Route path='/profile' element={<ProfilePage/>}>
+          <Route path='/profile' element={<OnlyAuth component={<ProfilePage/>}/>}>
             <Route index element={<ProfileForm />} />
             <Route path='/profile' element={<ProfileForm/>}/>
             <Route path='orders' element={<ProfileOrders/>}/>
