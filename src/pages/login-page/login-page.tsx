@@ -3,17 +3,18 @@ import { useState } from "react"
 import { Link } from 'react-router-dom'
 
 import styles from './login-page.module.css'
-import { loginRequest } from "../../utils/api"
+import { useAppDispatch } from "../../types/hooks"
+import { login } from "../../services/actions/user"
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useAppDispatch() 
+
   const submit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // TODO: добавить логику
-    loginRequest(email,password).then(result => console.log(result))
-    console.log(email, password)
+    dispatch(login(email,password))
   }
 
   return (

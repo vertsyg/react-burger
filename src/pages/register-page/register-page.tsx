@@ -2,18 +2,19 @@ import { useState } from 'react';
 import styles from './register-page.module.css'
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-import { registerRequest } from '../../utils/api';
+import { useAppDispatch } from '../../types/hooks';
+import { register } from '../../services/actions/user';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useAppDispatch()
+
   const submit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // TODO: добавить логику
-    registerRequest(email, password, name).then(result => console.log(result))
-    console.log(name, email, password)
+    dispatch(register(email, password, name))
   }
 
   return (

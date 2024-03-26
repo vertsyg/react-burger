@@ -8,19 +8,19 @@ import { BurgerIngredientsItemProps } from "../ingredient-item/ingredient-item"
 import { fetchData } from "../../../utils/api"
 
 const IngredientDetails = () => {
-  const { ingredientId } = useParams()
+  const { id } = useParams()
   const selectedIngredient = useAppSelector(getSelectedIngredient)
   const [currentItem, setCurrentItem] = useState<BurgerIngredientsItemProps | null>(null)
 
   useEffect(() => {
     const findItem = async () => {
       const items = await fetchData().then(result => result.data)
-      const item = items.find((item: BurgerIngredientsItemProps) => item._id === ingredientId)
+      const item = items.find((item: BurgerIngredientsItemProps) => item._id === id)
       setCurrentItem(item)
     }
 
     findItem()
-  }, [ingredientId])
+  }, [id])
 
   const renderIngredientDetails = (item: BurgerIngredientsItemProps) => {
     const { image_large, name, calories, proteins, fat, carbohydrates } = item

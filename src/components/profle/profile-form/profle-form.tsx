@@ -1,23 +1,34 @@
-import { useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './profile-form.module.css'
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
+import { useAppDispatch } from '../../../types/hooks'
+import { updateUserInfo } from '../../../services/actions/user'
+import { useSelector } from 'react-redux'
+import { getUserEmail, getUserName } from '../../../services/selectors'
 
 const ProfileForm = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const userName = useSelector(getUserName)
+  const userEmail = useSelector(getUserEmail)
 
+  const [name, setName] = useState(userName)
+  const [email, setEmail] = useState(userEmail)
+  const [password, setPassword] = useState('')
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    setName(userName)
+    setEmail(userEmail)
+  }, [userName, userEmail])
 
   const handleCancel = () => {
-    setName('')
-    setEmail('')
+    setName(userName)
+    setEmail(userEmail)
     setPassword('')
   }
 
   const handleUpdate = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // TODO: добавить логику
-    console.log('обновление данных')
+    dispatch(updateUserInfo(name, email, password))
   }
 
   return (
@@ -44,19 +55,18 @@ const ProfileForm = () => {
       />
       <Button 
         htmlType='submit' 
-        type='primary'
-        extraClass='mr-6'
-        style={{width: '24%'}}
+        type='secondary'
+        style={{marginLeft: '150px'}}
+        onClick={ handleCancel }
       >
-        Сохранить
+        Отменить
       </Button>
       <Button 
         htmlType='submit' 
         type='primary'
-        style={{width: '24%'}}
-        onClick={ handleCancel }
+        style={{width: '18%'}}
       >
-        Отмена
+        Сохранить
       </Button>
     </form>
   )

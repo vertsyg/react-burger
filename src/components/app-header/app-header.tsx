@@ -2,8 +2,13 @@ import { BurgerIcon, ListIcon, Logo, ProfileIcon } from '@ya.praktikum/react-dev
 import styles from './app-header.module.css'
 import HeaderButton from './header-button/header-button'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../types/hooks'
+import { getIsAuth, getUserName } from '../../services/selectors'
 
 const AppHeader = () => {
+  const isAuth = useAppSelector(getIsAuth)
+  const userName = useAppSelector(getUserName)
+
   return (
     <header className={styles.wrapper}>
       <nav className={styles.container}>
@@ -29,7 +34,7 @@ const AppHeader = () => {
         <HeaderButton 
           path='/profile'
           icon={ProfileIcon} 
-          text='Личный кабинет' 
+          text={isAuth ? userName : 'Личный кабинет'} 
         />
       </nav>
     </header>

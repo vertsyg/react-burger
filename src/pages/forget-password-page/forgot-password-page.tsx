@@ -1,21 +1,23 @@
 import styles from './forgot-password-page.module.css'
 import { useState } from 'react';
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link, useNavigate } from 'react-router-dom';
-import { forgotPasswordRequest } from '../../utils/api';
+import { Link, Navigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../types/hooks';
+import { forgotPassword } from '../../services/actions/user';
+import { getIsPasswordReset } from '../../services/selectors';
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('')
-  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const isPasswordReset = useAppSelector(getIsPasswordReset)
+
+  if (isPasswordReset) {
+    return (<Navigate to='/reset-password'/>)
+  }
 
   const submit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // TODO: добавить логику
-    const response = await forgotPasswordRequest(email)
-    console.log(response.success)
-    if (response.success) {
-      navigate('/reset-password')
-    }
+    dispatch(forgotPassword(email))
   }
 
   return (

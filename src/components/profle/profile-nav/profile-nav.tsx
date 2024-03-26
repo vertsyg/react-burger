@@ -1,11 +1,18 @@
 import { NavLink, useLocation } from "react-router-dom"
 import styles from './profile-nav.module.css'
+import { useAppDispatch } from "../../../types/hooks"
+import { logout } from "../../../services/actions/user"
 
 const ProfileNav = () => {
   const { pathname } = useLocation()
+  const dispatch = useAppDispatch()
 
   const match = (to:string) => {
     return to === pathname
+  }
+
+  const handleLogout = () => {
+    dispatch(logout())
   }
 
   return (
@@ -27,10 +34,9 @@ const ProfileNav = () => {
         >
           История заказов
         </NavLink>
-        {/* TODO: пока что это пустышка */}
         <button 
           className={`${styles.logout_button} text text_center text_type_main-medium text_color_inactive`}
-          onClick={() => console.log('клик по выходу')}
+          onClick={handleLogout}
         >
           Выход
         </button>

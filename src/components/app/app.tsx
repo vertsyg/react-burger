@@ -12,16 +12,26 @@ import FeedPage from '../../pages/feed-page/feed-page';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import ProfileOrders from '../profle/profile-orders/profile-orders';
 import ProfileForm from '../profle/profile-form/profle-form';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../types/hooks';
+import { getUser } from '../../services/actions/user';
 
 function App() {
 
   let location = useLocation()
   let state = location.state as { backgroundLocation? : Location}
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   const closeModal = () => {
     navigate(-1)
   }
+
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      dispatch(getUser())
+    }
+  })
 
   return (
     <div className={styles.app}>
@@ -40,7 +50,7 @@ function App() {
             <Route path='orders' element={<ProfileOrders/>}/>
             <Route path='*' element={<NotFoundPage/>}/>
           </Route>
-          <Route path='/ingredients/:ingredientId' element={<IngredientDetails/>}/>
+          <Route path='/ingredients/:id' element={<IngredientDetails/>}/>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
