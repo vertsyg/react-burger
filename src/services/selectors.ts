@@ -9,3 +9,9 @@ export const getBurgerConstructorBun = (state : RootState) => state.burgerConstr
 export const getBurgerConstructorIngredients = (state : RootState) => state.burgerConstructor.ingredients
 export const getBurgerOrderNumber = (state : RootState) => state.order.orderNumber
 export const getOrderModalIsOpen = (state : RootState) => state.order.isModalOpen
+export const getOrderLoading = (state : RootState) => state.order.orderRequest
+export const getUserName = (state : RootState) => state.user.user.name
+export const getUserEmail = (state : RootState) => state.user.user.email
+export const getIsAuth = (state : RootState) => state.user.isAuth
+export const getIsPasswordReset = (state : RootState) => state.user.isPasswordReset
+export const getIsPasswordResetSuccess = (state: RootState) => state.user.isPasswordResetSuccess

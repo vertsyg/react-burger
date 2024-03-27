@@ -1,0 +1,21 @@
+.profile_left_side {
+  width: 320px;
+  margin-right: 60px;
+}
+
+.profile_nav {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.nav_button {
+  text-decoration: none;
+}
+
+.logout_button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 40px
+}

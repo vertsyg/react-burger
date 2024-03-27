@@ -1,0 +1,14 @@
+.login_container {
+  text-align: center;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px
+}
+
+.login_link {
+  text-decoration: none;
+  color: #4C4CFF
+}

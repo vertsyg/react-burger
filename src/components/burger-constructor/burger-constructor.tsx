@@ -4,21 +4,28 @@ import ConstructorIngredient from './constructor-ingredient/constructor-ingredie
 import OrderDetails from './order-details/order-details'
 import Modal from '../modal/modal'
 
-import { getBurgerConstructorBun, getBurgerConstructorIngredients, getOrderModalIsOpen} from '../../services/selectors'
+import { getBurgerConstructorBun, getBurgerConstructorIngredients, getIsAuth, getOrderModalIsOpen} from '../../services/selectors'
 import { useDrop } from 'react-dnd'
 import { useAppDispatch, useAppSelector } from '../../types/hooks'
 import { addIngredient, clearConstructorIngredients, closeOrderModal, createOrder, openOrderModal, sortIngredients } from '../../services/actions/ingredients'
 import { BurgerIngredientsItemProps } from '../burger-ingredients/ingredient-item/ingredient-item'
 import { useCallback, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const BurgerConstructor = () => {
   const isModalOpen = useAppSelector(getOrderModalIsOpen)
+  const isAuth = useAppSelector(getIsAuth)
+  const navigate = useNavigate()
   const bun = useAppSelector(getBurgerConstructorBun)
   const ingredients = useAppSelector(getBurgerConstructorIngredients)
 
   const dispatch = useAppDispatch()
 
   const handleCreateOrder = () => {
+    if (!isAuth) {
+      navigate('/login')
+      return
+    }
     dispatch(openOrderModal())
     
     if (bun && ingredients) {

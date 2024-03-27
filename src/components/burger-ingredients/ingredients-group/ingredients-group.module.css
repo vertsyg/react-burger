@@ -9,3 +9,8 @@
   flex-wrap: wrap;
   margin-top: 24px;
 } 
+
+.link {
+  color: inherit;
+  width: 47%;
+}
