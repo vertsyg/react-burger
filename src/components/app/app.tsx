@@ -16,11 +16,12 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../types/hooks';
 import { getUser } from '../../services/actions/user';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
+import { getIngredients } from '../../services/actions/ingredients';
 
 function App() {
 
-  let location = useLocation()
-  let state = location.state as { backgroundLocation? : Location}
+  const location = useLocation()
+  const state = location.state as { backgroundLocation? : Location}
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -29,6 +30,7 @@ function App() {
   }
 
   useEffect(() => {
+    dispatch(getIngredients())
     if (localStorage.getItem('accessToken')) {
       dispatch(getUser())
     }
@@ -52,13 +54,13 @@ function App() {
             <Route path='*' element={<NotFoundPage/>}/>
           </Route>
           <Route path='/ingredients/:id' element={<IngredientDetails/>}/>
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
 
         {state?.backgroundLocation &&
           <Routes>
             <Route 
-              path='/ingredients/:ingredientId' 
+              path='/ingredients/:id' 
               element={
                 <Modal title='Детали ингредиента' handleClose={closeModal}>
                   <IngredientDetails/>
