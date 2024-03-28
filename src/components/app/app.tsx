@@ -34,7 +34,7 @@ function App() {
     if (localStorage.getItem('accessToken')) {
       dispatch(getUser())
     }
-  })
+  },[])
 
   return (
     <div className={styles.app}>
