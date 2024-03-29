@@ -1,39 +1,75 @@
+import AppHeader from '../app-header/app-header';import styles from './app.module.css'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { MainPage } from '../../pages/main-page/main-page';
+import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
+import Modal from '../modal/modal';
+import LoginPage from '../../pages/login-page/login-page';
+import RegisterPage from '../../pages/register-page/register-page';
+import ForgotPasswordPage from '../../pages/forget-password-page/forgot-password-page';
+import ResetPasswordPage from '../../pages/reset-password-page/reset-password-page';
+import ProfilePage from '../../pages/profile-page/profile-page';
+import FeedPage from '../../pages/feed-page/feed-page';
+import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
+import ProfileOrders from '../profle/profile-orders/profile-orders';
+import ProfileForm from '../profle/profile-form/profle-form';
 import { useEffect } from 'react';
-import AppHeader from '../app-header/app-header';
-import BurgerIngredients from '../burger-ingredients/burger-ingredients';
-import BurgerConstructor from '../burger-constructor/burger-constructor';
-import styles from './app.module.css'
+import { useAppDispatch } from '../../types/hooks';
+import { getUser } from '../../services/actions/user';
+import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { getIngredients } from '../../services/actions/ingredients';
-import { getError, getLoading } from '../../services/selectors';
-import { useAppDispatch, useAppSelector } from '../../types/hooks';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App() {
-  const loading = useAppSelector(getLoading)
-  const error = useAppSelector(getError)
 
+  const location = useLocation()
+  const state = location.state as { backgroundLocation? : Location}
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
+
+  const closeModal = () => {
+    navigate(-1)
+  }
 
   useEffect(() => {
     dispatch(getIngredients())
-  }, [dispatch])
+    if (localStorage.getItem('accessToken')) {
+      dispatch(getUser())
+    }
+  },[])
 
   return (
     <div className={styles.app}>
       <AppHeader />
-      <main>
-        {loading ? (
-          <p>Загрузка</p>
-        ) : error ? (
-          <p>Кажется сегодня на пп</p>
-        ) : (
-          <DndProvider backend={HTML5Backend}>
-            <BurgerIngredients/>
-            <BurgerConstructor/>
-          </DndProvider>
-        )}
-      </main>
+      <div className={styles.main}>    
+        <Routes location={state?.backgroundLocation || location}>
+          <Route path='/' element={<MainPage/>}/>
+          <Route path='/login' element={<OnlyUnAuth component={<LoginPage/>}/>}/>
+          <Route path='/register' element={<OnlyUnAuth component={<RegisterPage/>}/>}/>
+          <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPasswordPage/>}/>}/>
+          <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPasswordPage/>}/>}/>
+          <Route path='/feed' element={<FeedPage/>}/>
+          <Route path='/profile' element={<OnlyAuth component={<ProfilePage/>}/>}>
+            <Route index element={<ProfileForm />} />
+            <Route path='/profile' element={<ProfileForm/>}/>
+            <Route path='orders' element={<ProfileOrders/>}/>
+            <Route path='*' element={<NotFoundPage/>}/>
+          </Route>
+          <Route path='/ingredients/:id' element={<IngredientDetails/>}/>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+
+        {state?.backgroundLocation &&
+          <Routes>
+            <Route 
+              path='/ingredients/:id' 
+              element={
+                <Modal title='Детали ингредиента' handleClose={closeModal}>
+                  <IngredientDetails/>
+                </Modal>
+              }
+            />
+          </Routes>
+        }
+      </div>
     </div>
   );
 }

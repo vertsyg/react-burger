@@ -1,0 +1,14 @@
+.register_container {
+  text-align: center;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px
+}
+
+.register_link {
+  text-decoration: none;
+  color: #4C4CFF
+}

@@ -2,3 +2,10 @@
   height: 100vh;
   overflow-y: hidden;
 }
+
+.main {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 130px)
+}
