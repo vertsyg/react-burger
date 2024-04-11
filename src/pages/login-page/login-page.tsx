@@ -1,10 +1,10 @@
-import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components"
-import { useState } from "react"
-import { Link } from 'react-router-dom'
+import { Button, EmailInput, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import styles from './login-page.module.css'
-import { useAppDispatch } from "../../types/hooks"
-import { login } from "../../services/actions/user"
+import styles from './login-page.module.css';
+import { useAppDispatch } from '../../types/hooks';
+import { login } from '../../services/actions/user';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');

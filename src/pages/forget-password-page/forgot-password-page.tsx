@@ -1,4 +1,4 @@
-import styles from './forgot-password-page.module.css'
+import styles from './forgot-password-page.module.css';
 import { useState } from 'react';
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Navigate } from 'react-router-dom';

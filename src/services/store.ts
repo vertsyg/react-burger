@@ -1,7 +1,7 @@
-import { combineReducers } from "redux";
-import { burgerOrderReducer, burgerConstructorReducer, ingredientReducer, modalReducer } from "./reducers/ingredientsReducer";
-import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "./reducers/userReducer";
+import { combineReducers } from 'redux';
+import { burgerOrderReducer, burgerConstructorReducer, ingredientReducer, modalReducer } from './reducers/ingredientsReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { userReducer } from './reducers/userReducer';
 
 const rootReducer = combineReducers({
   ingredients: ingredientReducer,

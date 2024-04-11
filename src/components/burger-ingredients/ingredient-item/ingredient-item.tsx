@@ -1,4 +1,4 @@
-import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ingredient-item.module.css'
 import { openIngredientModal } from '../../../services/actions/ingredients';
 import { useDrag } from 'react-dnd';

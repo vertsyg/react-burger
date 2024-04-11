@@ -1,10 +1,10 @@
-import { FC, PropsWithChildren, useEffect } from 'react'
+import { FC, PropsWithChildren, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import ModalOverlay from './modal-overlay/modal-overlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './modal.module.css'
+import styles from './modal.module.css';
 
-const modalRoot = document.getElementById("modals")!
+const modalRoot = document.getElementById('modals')!
 
 interface ModalProps {
   title?: string

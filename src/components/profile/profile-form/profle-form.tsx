@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
-import styles from './profile-form.module.css'
-import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useAppDispatch } from '../../../types/hooks'
-import { updateUserInfo } from '../../../services/actions/user'
-import { useSelector } from 'react-redux'
-import { getUserEmail, getUserName } from '../../../services/selectors'
+import { useEffect, useState } from 'react';
+import styles from './profile-form.module.css';
+import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useAppDispatch } from '../../../types/hooks';
+import { updateUserInfo } from '../../../services/actions/user';
+import { useSelector } from 'react-redux';
+import { getUserEmail, getUserName } from '../../../services/selectors';
 
 const ProfileForm = () => {
   const userName = useSelector(getUserName)

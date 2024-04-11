@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './register-page.module.css'
+import styles from './register-page.module.css';
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../types/hooks';

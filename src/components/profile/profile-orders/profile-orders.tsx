@@ -1,4 +1,4 @@
-import styles from './profile-orders.module.css' 
+import styles from './profile-orders.module.css';
 
 const ProfileOrders = () => {
   return (

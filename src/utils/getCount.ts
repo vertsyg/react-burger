@@ -1,4 +1,4 @@
-import { BurgerIngredientsItemProps } from "../components/burger-ingredients/ingredient-item/ingredient-item";
+import { BurgerIngredientsItemProps } from '../components/burger-ingredients/ingredient-item/ingredient-item';
 
 export const getCount = (items: BurgerIngredientsItemProps[], id: string) => {
   return items.reduce((acc, item) => {

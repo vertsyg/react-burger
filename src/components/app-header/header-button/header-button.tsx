@@ -1,7 +1,7 @@
-import { TIconProps } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/utils'
-import styles from './header-button.module.css'
-import { ReactNode } from 'react'
-import { NavLink } from 'react-router-dom'
+import { TIconProps } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/utils';
+import styles from './header-button.module.css';
+import { ReactNode } from 'react';
+import { NavLink } from 'react-router-dom';
 
 interface HeaderButtonProps {
   icon: ({ type }: TIconProps) => ReactNode

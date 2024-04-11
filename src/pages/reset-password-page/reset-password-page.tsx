@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import styles from './reset-password-page.module.css'
-import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Link, Navigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../types/hooks'
-import { getIsPasswordReset, getIsPasswordResetSuccess } from '../../services/selectors'
-import { resetPassword } from '../../services/actions/user'
+import { useState } from 'react';
+import styles from './reset-password-page.module.css';
+import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Link, Navigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../types/hooks';
+import { getIsPasswordReset, getIsPasswordResetSuccess } from '../../services/selectors';
+import { resetPassword } from '../../services/actions/user';
 
 const ResetPasswordPage = () => {
   const [password, setPassword] = useState('')

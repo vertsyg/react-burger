@@ -1,11 +1,11 @@
-import NutritionInfo from "./nutrition-info/nutrition-info"
-import styles from './ingredient-details.module.css'
-import { getSelectedIngredient } from "../../../services/selectors"
-import { useAppSelector } from "../../../types/hooks"
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { BurgerIngredientsItemProps } from "../ingredient-item/ingredient-item"
-import { fetchData } from "../../../utils/api"
+import NutritionInfo from './nutrition-info/nutrition-info';
+import styles from './ingredient-details.module.css';
+import { getSelectedIngredient } from '../../../services/selectors';
+import { useAppSelector } from '../../../types/hooks';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { BurgerIngredientsItemProps } from '../ingredient-item/ingredient-item';
+import { fetchData } from '../../../utils/api';
 
 const IngredientDetails = () => {
   const { id } = useParams()

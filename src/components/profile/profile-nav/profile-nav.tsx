@@ -1,7 +1,7 @@
-import { NavLink, useLocation } from "react-router-dom"
-import styles from './profile-nav.module.css'
-import { useAppDispatch } from "../../../types/hooks"
-import { logout } from "../../../services/actions/user"
+import { NavLink, useLocation } from 'react-router-dom';
+import styles from './profile-nav.module.css';
+import { useAppDispatch } from '../../../types/hooks';
+import { logout } from '../../../services/actions/user';
 
 const ProfileNav = () => {
   const { pathname } = useLocation()
