@@ -65,7 +65,6 @@ export const updateUserInfo = (name: string, email: string, password: string) =>
     },
     body: JSON.stringify({ name, email, password })
   }).then(res  => {
-    console.log(res)
     dispatch({
       type: UPDATE_USER_SUCCESS,
       user: res.user
