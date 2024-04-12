@@ -74,12 +74,12 @@ export const modalReducer = (state = modalInitialState, action: any) => {
   }
 }
 
-interface burgerConstructorState {
+interface BurgerConstructorState {
   bun: BurgerIngredientsItemProps | null,
   ingredients: BurgerIngredientsItemProps[] 
 }
 
-const burgerConstructorInitialState: burgerConstructorState = {
+const burgerConstructorInitialState: BurgerConstructorState = {
   bun: null,
   ingredients: [],
 }
@@ -140,14 +140,14 @@ export const burgerConstructorReducer = (state = burgerConstructorInitialState, 
   }
 }
 
-interface orderState {
+interface OrderState {
   orderNumber: number | null
   orderRequest: boolean
   orderFailed: boolean
   isModalOpen: boolean 
 }
 
-const orderInitialState : orderState = {
+const orderInitialState : OrderState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,

@@ -1,5 +1,5 @@
 import styles from './forgot-password-page.module.css';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../types/hooks';
@@ -15,7 +15,7 @@ const ForgotPasswordPage = () => {
     return (<Navigate to='/reset-password'/>)
   }
 
-  const submit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     dispatch(forgotPassword(email))
   }
@@ -26,12 +26,11 @@ const ForgotPasswordPage = () => {
       <form className={`${styles.forgot_password_form} mb-20`} onSubmit={submit}>
         <EmailInput
           value={email} 
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
         />
         <Button 
           htmlType='submit' 
           type='primary'
-          style={{width: '40%', margin: '0 auto'}}
         >
           Восстановить
         </Button>

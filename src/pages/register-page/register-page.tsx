@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './register-page.module.css';
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ const RegisterPage = () => {
 
   const dispatch = useAppDispatch()
 
-  const submit = (event: React.SyntheticEvent<HTMLFormElement>) => {
+  const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     dispatch(register(email, password, name))
   }
@@ -24,20 +24,19 @@ const RegisterPage = () => {
         <Input
           placeholder='Имя'
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
         />
         <EmailInput 
           value={email} 
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
         />
         <PasswordInput
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
         <Button 
           htmlType='submit' 
           type='primary'
-          style={{width: '55%', margin: '0 auto'}}
         >
           Зарегестрироваться
         </Button>
