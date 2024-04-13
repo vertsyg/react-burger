@@ -1,7 +1,7 @@
-import img from '../../../images/done.svg'
-import styles from './order-details.module.css'
-import { getBurgerOrderNumber, getOrderLoading } from '../../../services/selectors'
-import { useAppSelector } from '../../../types/hooks'
+import img from '../../../images/done.svg';
+import styles from './order-details.module.css';
+import { getBurgerOrderNumber, getOrderLoading } from '../../../services/selectors';
+import { useAppSelector } from '../../../types/hooks';
 
 const OrderDetails = () => {
   const number = useAppSelector(getBurgerOrderNumber)

@@ -1,8 +1,8 @@
 import { Button, ConstructorElement, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import styles from './burger-constructor.module.css'
-import ConstructorIngredient from './constructor-ingredient/constructor-ingredient'
-import OrderDetails from './order-details/order-details'
-import Modal from '../modal/modal'
+import styles from './burger-constructor.module.css';
+import ConstructorIngredient from './constructor-ingredient/constructor-ingredient';
+import OrderDetails from './order-details/order-details';
+import Modal from '../modal/modal';
 
 import { getBurgerConstructorBun, getBurgerConstructorIngredients, getIsAuth, getOrderModalIsOpen} from '../../services/selectors'
 import { useDrop } from 'react-dnd'

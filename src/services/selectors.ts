@@ -1,4 +1,4 @@
-import { RootState } from "../types/hooks"
+import { RootState } from '../types/hooks'
 
 export const getIsModalOpen = (state : RootState) => state.modal.isModalOpen
 export const getSelectedIngredient = (state : RootState) => state.modal.selectedIngredient

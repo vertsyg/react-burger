@@ -1,10 +1,10 @@
-import styles from './constructor-ingredient.module.css'
-import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components"
-import { BurgerIngredientsItemProps } from "../../burger-ingredients/ingredient-item/ingredient-item"
-import { deleteIngredient } from '../../../services/actions/ingredients'
-import { useRef } from 'react'
-import { XYCoord, useDrag, useDrop } from 'react-dnd'
-import { useAppDispatch } from '../../../types/hooks'
+import styles from './constructor-ingredient.module.css';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { BurgerIngredientsItemProps } from '../../burger-ingredients/ingredient-item/ingredient-item';
+import { deleteIngredient } from '../../../services/actions/ingredients';
+import { useRef } from 'react';
+import { XYCoord, useDrag, useDrop } from 'react-dnd';
+import { useAppDispatch } from '../../../types/hooks';
 
 interface ConstructorIngredientProps {
   ingredient: BurgerIngredientsItemProps,

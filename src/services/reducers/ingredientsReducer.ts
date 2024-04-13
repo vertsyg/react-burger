@@ -1,5 +1,18 @@
-import { BurgerIngredientsItemProps } from "../../components/burger-ingredients/ingredient-item/ingredient-item";
-import { ADD_INGREDIENT, CLEAR_CONSTRUCTOR_INGREDIENTS, CLOSE_INGREDIENT_MODAL, CLOSE_ORDER_MODAL, CREATE_ORDER_ERROR, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, DELETE_INGREDIENT, GET_INGREDIENTS_ERROR, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, OPEN_INGREDIENT_MODAL, OPEN_ORDER_MODAL, SORT_INGREDIENTS } from "../actions/ingredients";
+import { BurgerIngredientsItemProps } from '../../components/burger-ingredients/ingredient-item/ingredient-item';
+import { ADD_INGREDIENT, 
+  CLEAR_CONSTRUCTOR_INGREDIENTS, 
+  CLOSE_INGREDIENT_MODAL, 
+  CLOSE_ORDER_MODAL, 
+  CREATE_ORDER_ERROR, 
+  CREATE_ORDER_REQUEST, 
+  CREATE_ORDER_SUCCESS, 
+  DELETE_INGREDIENT, 
+  GET_INGREDIENTS_ERROR, 
+  GET_INGREDIENTS_REQUEST, 
+  GET_INGREDIENTS_SUCCESS, 
+  OPEN_INGREDIENT_MODAL, 
+  OPEN_ORDER_MODAL, 
+  SORT_INGREDIENTS } from '../actions/ingredients';
 
 // TODO: описать типы экшенов
 
@@ -61,12 +74,12 @@ export const modalReducer = (state = modalInitialState, action: any) => {
   }
 }
 
-interface burgerConstructorState {
+interface BurgerConstructorState {
   bun: BurgerIngredientsItemProps | null,
   ingredients: BurgerIngredientsItemProps[] 
 }
 
-const burgerConstructorInitialState: burgerConstructorState = {
+const burgerConstructorInitialState: BurgerConstructorState = {
   bun: null,
   ingredients: [],
 }
@@ -127,14 +140,14 @@ export const burgerConstructorReducer = (state = burgerConstructorInitialState, 
   }
 }
 
-interface orderState {
+interface OrderState {
   orderNumber: number | null
   orderRequest: boolean
   orderFailed: boolean
   isModalOpen: boolean 
 }
 
-const orderInitialState : orderState = {
+const orderInitialState : OrderState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,

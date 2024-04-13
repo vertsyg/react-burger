@@ -1,6 +1,6 @@
-import { useAppSelector } from "../../types/hooks";
-import { getUserName } from "../../services/selectors";
-import { Navigate, useLocation } from "react-router-dom";
+import { useAppSelector } from '../../types/hooks';
+import { getUserName } from '../../services/selectors';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface ProtectedProps {
   onlyUnAuth?: boolean;

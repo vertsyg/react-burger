@@ -1,4 +1,4 @@
-import AppHeader from '../app-header/app-header';import styles from './app.module.css'
+import AppHeader from '../app-header/app-header';import styles from './app.module.css';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { MainPage } from '../../pages/main-page/main-page';
 import IngredientDetails from '../burger-ingredients/ingredient-details/ingredient-details';
@@ -10,8 +10,8 @@ import ResetPasswordPage from '../../pages/reset-password-page/reset-password-pa
 import ProfilePage from '../../pages/profile-page/profile-page';
 import FeedPage from '../../pages/feed-page/feed-page';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
-import ProfileOrders from '../profle/profile-orders/profile-orders';
-import ProfileForm from '../profle/profile-form/profle-form';
+import ProfileOrders from '../profile/profile-orders/profile-orders';
+import ProfileForm from '../profile/profile-form/profle-form';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../types/hooks';
 import { getUser } from '../../services/actions/user';

@@ -1,4 +1,4 @@
-import styles from './feed-page.module.css'
+import styles from './feed-page.module.css';
 
 const FeedPage = () => {
   return (

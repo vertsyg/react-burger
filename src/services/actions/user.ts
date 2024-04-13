@@ -1,5 +1,5 @@
-import { AppDispatch } from "../../types/hooks"
-import { fetchWithRefresh, forgotPasswordRequest, loginRequest, logoutRequest, registerRequest, resetPasswordRequest } from "../../utils/api"
+import { AppDispatch } from '../../types/hooks';
+import { fetchWithRefresh, forgotPasswordRequest, loginRequest, logoutRequest, registerRequest, resetPasswordRequest } from '../../utils/api';
 
 export const GET_REGISTER_REQUEST = 'GET_REGISTER_REQUEST'
 export const GET_REGISTER_SUCCESS = 'GET_REGISTER_SUCCESS'
@@ -65,7 +65,6 @@ export const updateUserInfo = (name: string, email: string, password: string) =>
     },
     body: JSON.stringify({ name, email, password })
   }).then(res  => {
-    console.log(res)
     dispatch({
       type: UPDATE_USER_SUCCESS,
       user: res.user

@@ -1,5 +1,5 @@
-import { FC, PropsWithChildren } from "react";
-import styles from './modal_overlay.module.css'
+import { FC, PropsWithChildren } from 'react';
+import styles from './modal_overlay.module.css';
 
 interface ModalOverlayProps {
   handleClose: () => void,

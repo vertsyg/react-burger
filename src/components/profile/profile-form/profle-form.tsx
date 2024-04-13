@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react'
-import styles from './profile-form.module.css'
-import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useAppDispatch } from '../../../types/hooks'
-import { updateUserInfo } from '../../../services/actions/user'
-import { useSelector } from 'react-redux'
-import { getUserEmail, getUserName } from '../../../services/selectors'
+import { FormEvent, useEffect, useState } from 'react';
+import styles from './profile-form.module.css';
+import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useAppDispatch, useAppSelector } from '../../../types/hooks';
+import { updateUserInfo } from '../../../services/actions/user';
+import { getUserEmail, getUserName } from '../../../services/selectors';
 
 const ProfileForm = () => {
-  const userName = useSelector(getUserName)
-  const userEmail = useSelector(getUserEmail)
+  const userName = useAppSelector(getUserName)
+  const userEmail = useAppSelector(getUserEmail)
 
   const [name, setName] = useState(userName)
   const [email, setEmail] = useState(userEmail)
@@ -26,7 +25,7 @@ const ProfileForm = () => {
     setPassword('')
   }
 
-  const handleUpdate = (event: React.SyntheticEvent<HTMLFormElement>) => {
+  const handleUpdate = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     dispatch(updateUserInfo(name, email, password))
   }
@@ -53,21 +52,21 @@ const ProfileForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         extraClass="mb-2"
       />
-      <Button 
-        htmlType='submit' 
-        type='secondary'
-        style={{marginLeft: '150px'}}
-        onClick={ handleCancel }
-      >
-        Отменить
-      </Button>
-      <Button 
-        htmlType='submit' 
-        type='primary'
-        style={{width: '18%'}}
-      >
-        Сохранить
-      </Button>
+      <div className={styles.buttons}>
+        <Button 
+          htmlType='submit' 
+          type='secondary'
+          onClick={ handleCancel }
+        >
+          Отменить
+        </Button>
+        <Button 
+          htmlType='submit' 
+          type='primary'
+        >
+          Сохранить
+        </Button>
+      </div>
     </form>
   )
 }

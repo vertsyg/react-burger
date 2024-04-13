@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react'
-import styles from './burger-ingredients.module.css'
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
-import IngredientGroup from './ingredients-group/ingredients-group'
-import { groupIngredientsByType } from '../../utils/groupIngredientsByType'
-import { getBurgerIngredients } from '../../services/selectors'
-import { useAppSelector } from '../../types/hooks'
+import { useRef, useState } from 'react';
+import styles from './burger-ingredients.module.css';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import IngredientGroup from './ingredients-group/ingredients-group';
+import { groupIngredientsByType } from '../../utils/groupIngredientsByType';
+import { getBurgerIngredients } from '../../services/selectors';
+import { useAppSelector } from '../../types/hooks';
 
 const BurgerIngredients = () => {
 
