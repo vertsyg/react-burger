@@ -1,4 +1,5 @@
 import { BurgerIngredientsItemProps } from '../../components/burger-ingredients/ingredient-item/ingredient-item';
+import { BurgerConstructorAction, BurgerIngredientsAction, IngredientModalAction, OrderAction } from '../../types/actions/ingredients';
 import { ADD_INGREDIENT, 
   CLEAR_CONSTRUCTOR_INGREDIENTS, 
   CLOSE_INGREDIENT_MODAL, 
@@ -14,15 +15,13 @@ import { ADD_INGREDIENT,
   OPEN_ORDER_MODAL, 
   SORT_INGREDIENTS } from '../actions/ingredients';
 
-// TODO: описать типы экшенов
-
 const dataInitialState = {
   ingredients: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
 }
 
-export const ingredientReducer = (state = dataInitialState, action: any) => {
+export const ingredientReducer = (state = dataInitialState, action: BurgerIngredientsAction) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
@@ -55,7 +54,7 @@ const modalInitialState = {
   selectedIngredient: null
 } 
  
-export const modalReducer = (state = modalInitialState, action: any) => {
+export const modalReducer = (state = modalInitialState, action: IngredientModalAction) => {
   switch (action.type) {
     case OPEN_INGREDIENT_MODAL:
       return {
@@ -84,30 +83,7 @@ const burgerConstructorInitialState: BurgerConstructorState = {
   ingredients: [],
 }
 
-interface AddIngredientAction {
-  type: typeof ADD_INGREDIENT,
-  ingredient: BurgerIngredientsItemProps
-} 
-
-interface DeleteIngredientAction {
-  type: typeof DELETE_INGREDIENT,
-  uuid: string
-}
-
-interface SortIngredientsAction {
-  type: typeof SORT_INGREDIENTS,
-  newIngredients: BurgerIngredientsItemProps[]
-}
-
-interface ClearConstructorIngredientAction {
-  type: typeof CLEAR_CONSTRUCTOR_INGREDIENTS
-}
-
-type ActionTypes = 
-  AddIngredientAction | DeleteIngredientAction | 
-  SortIngredientsAction | ClearConstructorIngredientAction;
-
-export const burgerConstructorReducer = (state = burgerConstructorInitialState, action: ActionTypes) => {
+export const burgerConstructorReducer = (state = burgerConstructorInitialState, action: BurgerConstructorAction) => {
   switch (action.type) {
     case ADD_INGREDIENT:
       let newState = { ...state }
@@ -154,7 +130,7 @@ const orderInitialState : OrderState = {
   isModalOpen: false
 }
 
-export const burgerOrderReducer = (state = orderInitialState, action: any) => {
+export const burgerOrderReducer = (state = orderInitialState, action: OrderAction) => {
   switch (action.type) {
     case CREATE_ORDER_REQUEST: 
       return {

@@ -1,3 +1,4 @@
+import { UserAction, UserInfo } from '../../types/actions/user'
 import { FORGOT_PASSWORD_ERROR, 
   FORGOT_PASSWORD_REQUEST, 
   FORGOT_PASSWORD_SUCCESS, 
@@ -20,7 +21,17 @@ import { FORGOT_PASSWORD_ERROR,
   UPDATE_USER_REQUEST, 
   UPDATE_USER_SUCCESS } from '../actions/user'
 
-const userInitialState = {
+
+interface UserState {
+  user: UserInfo,
+  isAuth: boolean,
+  request: boolean,
+  requestFailed: boolean,
+  isPasswordReset: boolean,
+  isPasswordResetSuccess: boolean
+}
+
+const userInitialState : UserState = {
   user: {
     name: '',
     email: ''
@@ -32,8 +43,7 @@ const userInitialState = {
   isPasswordResetSuccess: false
 }
 
-// TODO: описать типы экшенов
-export const userReducer = (state = userInitialState, action:any) => {
+export const userReducer = (state = userInitialState, action : UserAction) => {
   switch (action.type) {
     case GET_REGISTER_REQUEST: {
       return {
