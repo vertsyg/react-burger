@@ -109,7 +109,6 @@ export const login = (email:string, password:string) => (dispatch: AppDispatch) 
   })
 }
 
-
 export const logout = () => (dispatch: AppDispatch) => {
   dispatch({ type: GET_LOGOUT_REQUEST }) 
   logoutRequest().then(_ => {
