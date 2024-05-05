@@ -4,6 +4,7 @@ import { ADD_INGREDIENT,
   CLEAR_CONSTRUCTOR_INGREDIENTS, 
   CLOSE_INGREDIENT_MODAL, 
   CLOSE_ORDER_MODAL, 
+  CLOSE_WS_ORDER_MODAL, 
   CREATE_ORDER_ERROR, 
   CREATE_ORDER_REQUEST, 
   CREATE_ORDER_SUCCESS, 
@@ -13,6 +14,7 @@ import { ADD_INGREDIENT,
   GET_INGREDIENTS_SUCCESS, 
   OPEN_INGREDIENT_MODAL, 
   OPEN_ORDER_MODAL, 
+  OPEN_WS_ORDER_MODAL, 
   SORT_INGREDIENTS } from '../actions/ingredients';
 
 const dataInitialState = {
@@ -51,7 +53,8 @@ export const ingredientReducer = (state = dataInitialState, action: BurgerIngred
 
 const modalInitialState = {
   isModalOpen: false, 
-  selectedIngredient: null
+  selectedIngredient: null,
+  selectedOrder: null
 } 
  
 export const modalReducer = (state = modalInitialState, action: IngredientModalAction) => {
@@ -62,12 +65,24 @@ export const modalReducer = (state = modalInitialState, action: IngredientModalA
         isModalOpen: true,
         selectedIngredient: action.ingredient
       }
+    case OPEN_WS_ORDER_MODAL: 
+    return {
+      ...state,
+      isModalOpen: true,
+      selectedOrder: action.order
+    }
     case CLOSE_INGREDIENT_MODAL:
       return {
         ...state,
         isModalOpen: false,
         selectedIngredient: null
       }
+      case CLOSE_WS_ORDER_MODAL:
+        return {
+          ...state,
+          isModalOpen: false,
+          selectedOrder: null
+        }
     default:
       return state
   }

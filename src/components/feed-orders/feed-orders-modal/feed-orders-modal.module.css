@@ -1,0 +1,27 @@
+.modal {
+  width: 580px;
+  text-align: center;
+}
+
+.right {
+  text-align: start;
+}
+
+.order_modal_ingredients {
+  overflow-y: auto;
+  height: 300px;
+  scrollbar-width: thin;
+}
+
+.total_price {
+  font-size: 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.modal_footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

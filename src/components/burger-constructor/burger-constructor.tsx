@@ -29,7 +29,7 @@ const BurgerConstructor = () => {
     dispatch(openOrderModal())
     
     if (bun && ingredients) {
-      const allIngredientsId = [bun, bun, ...ingredients]
+      const allIngredientsId = [bun, ...ingredients, bun]
         .map((ingredient:BurgerIngredientsItemProps) => ingredient._id)
       dispatch(createOrder(allIngredientsId))
     }
