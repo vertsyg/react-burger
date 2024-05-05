@@ -1,3 +1,10 @@
 .profileOrders {
-  width: 940px
+  width: 940px;
+  overflow-y: auto;
+  height: calc(100vh - 90px - 40px - 40px - 40px - 20px);
+  scrollbar-width: thin;
+}
+
+.link {
+  color: inherit;
 }

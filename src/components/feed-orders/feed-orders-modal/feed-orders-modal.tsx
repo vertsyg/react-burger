@@ -10,7 +10,7 @@ import OrderModalIngredient from "./order-modal-ingredient/order-modal-ingredien
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components"
 
 const FeedOrdersModal = () => {
-  const { id } = useParams()
+  const { number } = useParams()
 
   const selectedOrder = useAppSelector(getSelectedOrder)
   const [currentItem, setCurrentItem] = useState<OrderInfo | null>(null)
@@ -18,11 +18,11 @@ const FeedOrdersModal = () => {
   
   useEffect(() => {
     const findOrder = async () => {
-      const order = await request(`orders/${id}`).then(data => data.orders[0])
+      const order = await request(`orders/${number}`).then(data => data.orders[0])
       setCurrentItem(order)
     }
       findOrder()
-  }, [id])
+  }, [number])
 
   const renderOrderModal = (order: OrderInfo) => {
     const { number, name, status, ingredients, createdAt } = order
@@ -33,7 +33,6 @@ const FeedOrdersModal = () => {
     }).reduce((acc, curr) => acc + curr, 0)
 
     const orderStatus = status as keyof typeof orderStatusObj
-    console.log(status)
 
     let ingredientCountMap = ingredients.reduce<{[key: string] : number}>((acc, val) => {
       acc[val] = (acc[val] || 0) + 1;

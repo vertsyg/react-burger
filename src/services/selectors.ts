@@ -19,3 +19,4 @@ export const getIsPasswordResetSuccess = (state: RootState) => state.user.isPass
 export const getFeedOrders = (state: RootState) => state.feedOrders.orders
 export const getFeedOrdersTotal = (state: RootState) => state.feedOrders.total
 export const getFeedOrdersTotalToday = (state: RootState) => state.feedOrders.totalToday
+export const getProfileOrders = (state: RootState) => state.profileOrders.orders

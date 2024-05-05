@@ -51,11 +51,12 @@ function App() {
             <Route index element={<ProfileForm />} />
             <Route path='/profile' element={<ProfileForm/>}/>
             <Route path='orders' element={<ProfileOrders/>}/>
+            <Route path='orders/:number' element={<FeedOrdersModal/>}/>
             <Route path='*' element={<NotFoundPage/>}/>
           </Route>
           <Route path='/ingredients/:id' element={<IngredientDetails/>}/>
           <Route path='/feed' element={<FeedPage/>}/>
-          <Route path='/feed/:id' element={<FeedOrdersModal/>}/>
+          <Route path='/feed/:number' element={<FeedOrdersModal/>}/>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
 
@@ -70,7 +71,15 @@ function App() {
               }
             />
             <Route
-              path='/feed/:id'
+              path='/feed/:number'
+              element={
+                <Modal handleClose={closeModal}>
+                  <FeedOrdersModal/>
+                </Modal>
+              }
+            />
+            <Route
+              path='profile/orders/:number'
               element={
                 <Modal handleClose={closeModal}>
                   <FeedOrdersModal/>

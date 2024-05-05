@@ -8,7 +8,6 @@ const FeedOrders = () => {
 
   const orders = useAppSelector(getFeedOrders)
   let location = useLocation()
-  console.log(orders)
 
   return (
     <section className={styles.feed}>

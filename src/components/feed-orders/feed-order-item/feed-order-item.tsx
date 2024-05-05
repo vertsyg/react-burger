@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../../types/hooks";
 
 import styles from './feed-order-item.module.css'
 import { openWsOrderModal } from "../../../services/actions/ingredients";
+import { orderStatusObj } from "../../../types/actions/order";
+import { useLocation } from "react-router-dom";
 
 const FeedOrderItem = (order : OrderInfo) => {
   const dispatch = useAppDispatch()
@@ -12,6 +14,9 @@ const FeedOrderItem = (order : OrderInfo) => {
   const orderIngredients = order.ingredients
   const visibleIngredients = orderIngredients.slice(0,6)
   const invisibleIngredientsCount = orderIngredients.length - visibleIngredients.length
+
+  const orderStatus = order.status as keyof typeof orderStatusObj
+  const location = useLocation()
 
   const totalPrice = orderIngredients.map(ingredient => {
     const orderIngredient = allIngredients.find(ingr => ingr._id === ingredient)
@@ -37,6 +42,12 @@ const FeedOrderItem = (order : OrderInfo) => {
         />
       </div>
       <p className='text text_type_main-medium'>{order.name}</p>
+      {
+        location.pathname === '/profile/orders' && 
+        <p className={`text mt-3 ${orderStatus === 'done' ? 'text_color_success' : ''}`}>
+          {orderStatusObj[orderStatus]}
+        </p>
+      }
       <div className={styles.order_item_footer}>
         <div className={styles.order_item_ingredients}>
           {visibleIngredients.map((ingredient, index) => {
