@@ -16,14 +16,21 @@ import { ADD_INGREDIENT,
   OPEN_ORDER_MODAL, 
   OPEN_WS_ORDER_MODAL, 
   SORT_INGREDIENTS } from '../actions/ingredients';
+import { OrderInfo } from './web-socket-reducer';
 
-const dataInitialState = {
+type TDataState = {
+  ingredients: BurgerIngredientsItemProps[] | [],
+  ingredientsRequest: boolean,
+  ingredientsFailed: boolean
+}
+
+const dataInitialState : TDataState = {
   ingredients: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
 }
 
-export const ingredientReducer = (state = dataInitialState, action: BurgerIngredientsAction) => {
+export const ingredientReducer = (state = dataInitialState, action: BurgerIngredientsAction) : TDataState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
@@ -51,13 +58,19 @@ export const ingredientReducer = (state = dataInitialState, action: BurgerIngred
   }
 }
 
-const modalInitialState = {
+type TModalState = {
+  isModalOpen: boolean, 
+  selectedIngredient: BurgerIngredientsItemProps | null,
+  selectedOrder: OrderInfo | null
+}
+
+const modalInitialState : TModalState = {
   isModalOpen: false, 
   selectedIngredient: null,
   selectedOrder: null
 } 
  
-export const modalReducer = (state = modalInitialState, action: IngredientModalAction) => {
+export const modalReducer = (state = modalInitialState, action: IngredientModalAction) : TModalState => {
   switch (action.type) {
     case OPEN_INGREDIENT_MODAL:
       return {
@@ -88,17 +101,17 @@ export const modalReducer = (state = modalInitialState, action: IngredientModalA
   }
 }
 
-interface BurgerConstructorState {
+type TBurgerConstructorState = {
   bun: BurgerIngredientsItemProps | null,
   ingredients: BurgerIngredientsItemProps[] 
 }
 
-const burgerConstructorInitialState: BurgerConstructorState = {
+const burgerConstructorInitialState: TBurgerConstructorState = {
   bun: null,
   ingredients: [],
 }
 
-export const burgerConstructorReducer = (state = burgerConstructorInitialState, action: BurgerConstructorAction) => {
+export const burgerConstructorReducer = (state = burgerConstructorInitialState, action: BurgerConstructorAction) : TBurgerConstructorState => {
   switch (action.type) {
     case ADD_INGREDIENT:
       let newState = { ...state }
@@ -131,21 +144,21 @@ export const burgerConstructorReducer = (state = burgerConstructorInitialState, 
   }
 }
 
-interface OrderState {
-  orderNumber: number | null
+type TOrderState = {
+  orderNumber: string | null
   orderRequest: boolean
   orderFailed: boolean
   isModalOpen: boolean 
 }
 
-const orderInitialState : OrderState = {
+const orderInitialState : TOrderState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,
   isModalOpen: false
 }
 
-export const burgerOrderReducer = (state = orderInitialState, action: OrderAction) => {
+export const burgerOrderReducer = (state = orderInitialState, action: OrderAction) : TOrderState => {
   switch (action.type) {
     case CREATE_ORDER_REQUEST: 
       return {

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { getFeedOrders, getFeedOrdersTotal, getFeedOrdersTotalToday } from '../../services/selectors'
 import { useAppSelector } from '../../types/hooks'
 import styles from './feed-orders-info.module.css'
@@ -7,8 +8,19 @@ const FeedOrdersInfo = () => {
   const total = useAppSelector(getFeedOrdersTotal)
   const totalToday = useAppSelector(getFeedOrdersTotalToday)
 
-  const doneOrders = feedOrders.filter(order => order.status === 'done').splice(0,15).map(order => order.number)
-  const otherOrders = feedOrders.filter(order => order.status !== 'done').splice(0,15).map(order => order.number)
+  const doneOrders = useMemo(() => {
+    return feedOrders
+      .filter(order => order.status === 'done')
+      .splice(0,15)
+      .map(order => order.number)
+  }, [feedOrders])
+
+  const otherOrders = useMemo(() => {
+    return feedOrders
+      .filter(order => order.status !== 'done')
+      .splice(0,15)
+      .map(order => order.number)    
+  }, [feedOrders])
 
   return (
     <section>

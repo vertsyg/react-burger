@@ -22,7 +22,7 @@ import { FORGOT_PASSWORD_ERROR,
   UPDATE_USER_SUCCESS } from '../actions/user'
 
 
-interface UserState {
+type TUserState = {
   user: UserInfo,
   isAuth: boolean,
   request: boolean,
@@ -31,7 +31,7 @@ interface UserState {
   isPasswordResetSuccess: boolean
 }
 
-const userInitialState : UserState = {
+const userInitialState : TUserState = {
   user: {
     name: '',
     email: ''
@@ -43,7 +43,7 @@ const userInitialState : UserState = {
   isPasswordResetSuccess: false
 }
 
-export const userReducer = (state = userInitialState, action : UserAction) => {
+export const userReducer = (state = userInitialState, action : UserAction) : TUserState => {
   switch (action.type) {
     case GET_REGISTER_REQUEST: {
       return {

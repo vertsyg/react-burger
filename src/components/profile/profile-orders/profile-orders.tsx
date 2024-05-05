@@ -27,24 +27,26 @@ const ProfileOrders = () => {
 
   return (
     <div className={styles.profileOrders}>
-      {orders.map((order) => 
-        <Link
-          key={order.number}
-          to={`/profile/orders/${order.number}`}
-          state={{ backgroundLocation : location}}
-          className={styles.link}
-        >
-          <FeedOrderItem
-            ingredients={order.ingredients}
-            status={order.status}
-            number={order.number}
-            createdAt={order.createdAt}
-            updatedAt={order.updatedAt}
-            name={order.name}
-            _id = {order._id}
-            />
-        </Link>
-      )}
+      {orders ? 
+        orders.map((order) => 
+          <Link
+            key={order.number}
+            to={`/profile/orders/${order.number}`}
+            state={{ backgroundLocation : location}}
+            className={styles.link}
+          >
+            <FeedOrderItem
+              ingredients={order.ingredients}
+              status={order.status}
+              number={order.number}
+              createdAt={order.createdAt}
+              updatedAt={order.updatedAt}
+              name={order.name}
+              _id = {order._id}
+              />
+          </Link>
+        ) : <p>Загрузка...</p>     
+      }
     </div>
   )
 }

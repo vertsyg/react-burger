@@ -7,6 +7,7 @@ import styles from './feed-order-item.module.css'
 import { openWsOrderModal } from "../../../services/actions/ingredients";
 import { orderStatusObj } from "../../../types/actions/order";
 import { useLocation } from "react-router-dom";
+import { useMemo } from "react";
 
 const FeedOrderItem = (order : OrderInfo) => {
   const dispatch = useAppDispatch()
@@ -18,10 +19,12 @@ const FeedOrderItem = (order : OrderInfo) => {
   const orderStatus = order.status as keyof typeof orderStatusObj
   const location = useLocation()
 
-  const totalPrice = orderIngredients.map(ingredient => {
-    const orderIngredient = allIngredients.find(ingr => ingr._id === ingredient)
-    return orderIngredient ? orderIngredient.price : 0
-  }).reduce((acc, curr) => acc + curr, 0)
+  const totalPrice = useMemo(() => {
+    return orderIngredients.map(ingredient => {
+      const orderIngredient = allIngredients.find(ingr => ingr._id === ingredient)
+      return orderIngredient ? orderIngredient.price : 0
+    }).reduce((acc, curr) => acc + curr, 0)
+  }, [orderIngredients, allIngredients])
 
   const findIngredientImage = (ingredient : string) => {
     const orderIngredient = allIngredients.find(i => i._id === ingredient)
@@ -54,7 +57,7 @@ const FeedOrderItem = (order : OrderInfo) => {
             const img = findIngredientImage(ingredient)
             if (img) {
               return (
-                <div className={styles.ingredient_wrapper}>
+                <div key={index} className={styles.ingredient_wrapper}>
                   {invisibleIngredientsCount > 0 && index === 5 && (
                     <div className={styles.count} style={{zIndex: 6}}>+{invisibleIngredientsCount}</div>
                   )}

@@ -11,7 +11,7 @@ export interface OrderInfo {
   name: string,
 }
 
-interface WSOrdersState {
+type TWSOrdersState = {
   wsConnected: boolean,
   orders: OrderInfo[],
   total: number,
@@ -19,14 +19,14 @@ interface WSOrdersState {
   wsError?: Event
 }
 
-const WSFeedInitialState : WSOrdersState = {
+const WSFeedInitialState : TWSOrdersState = {
   wsConnected: false,
   orders: [],
   total: 0,
   totalToday: 0
 }
 
-export const WSFeedReducer = (state = WSFeedInitialState, action: WsFeedAction) => {
+export const WSFeedReducer = (state = WSFeedInitialState, action: WsFeedAction) : TWSOrdersState => {
   switch (action.type) {
     case WS_FEED_OPEN: {
       return {
@@ -59,14 +59,14 @@ export const WSFeedReducer = (state = WSFeedInitialState, action: WsFeedAction) 
   }
 }
 
-const WSProfileOrdersInitialState : WSOrdersState = {
+const WSProfileOrdersInitialState : TWSOrdersState = {
   wsConnected: false,
   orders: [],
   total: 0,
   totalToday: 0
 }
 
-export const WSProfileOrdersReducer = (state = WSProfileOrdersInitialState, action: WsProfileOrdersAction) => {
+export const WSProfileOrdersReducer = (state = WSProfileOrdersInitialState, action: WsProfileOrdersAction) : TWSOrdersState => {
   switch (action.type) {
     case WS_PROFILE_ORDERS_OPEN: {
       return {

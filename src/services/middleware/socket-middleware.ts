@@ -1,4 +1,5 @@
 import { Middleware } from 'redux'
+import { RootState } from '../../types/hooks';
 
 export type TWSActions = {
   wsInit: string,
@@ -8,13 +9,13 @@ export type TWSActions = {
   wsClose: string
 }
 
-export const socketMiddleware : (wsActions: TWSActions) => Middleware = (wsActions) => {
+export const socketMiddleware = (wsActions: TWSActions): Middleware<{}, RootState> => {
   return (store) => {
     let socket: WebSocket | null = null;
     let url: string | null = null; 
     let closing: boolean = false;
 
-    return (next) => (action : any) => {
+    return (next) => (action) => {
       const { dispatch } = store;
       const { type, payload } = action;
       const {
