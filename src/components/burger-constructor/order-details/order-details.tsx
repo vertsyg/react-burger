@@ -14,7 +14,7 @@ const OrderDetails = () => {
           <p>Загрузка</p>
         ) : (
           <>
-            <p className={`${styles.neon} text text_type_digits-large mb-10`}>{number}</p>
+            <p className="neon text text_type_digits-large mb-10">{number}</p>
             <p className="text text_type_main-medium">идентификатор заказа</p>
             <img src={img} alt='done' className="mt-10 mb-10"/>
             <p className="text text_type_main-small mb-3">Ваш заказ начали готовить</p>

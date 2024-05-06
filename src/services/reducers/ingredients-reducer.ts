@@ -1,8 +1,10 @@
 import { BurgerIngredientsItemProps } from '../../components/burger-ingredients/ingredient-item/ingredient-item';
+import { BurgerConstructorAction, BurgerIngredientsAction, IngredientModalAction, OrderAction } from '../../types/actions/ingredients';
 import { ADD_INGREDIENT, 
   CLEAR_CONSTRUCTOR_INGREDIENTS, 
   CLOSE_INGREDIENT_MODAL, 
   CLOSE_ORDER_MODAL, 
+  CLOSE_WS_ORDER_MODAL, 
   CREATE_ORDER_ERROR, 
   CREATE_ORDER_REQUEST, 
   CREATE_ORDER_SUCCESS, 
@@ -12,17 +14,23 @@ import { ADD_INGREDIENT,
   GET_INGREDIENTS_SUCCESS, 
   OPEN_INGREDIENT_MODAL, 
   OPEN_ORDER_MODAL, 
+  OPEN_WS_ORDER_MODAL, 
   SORT_INGREDIENTS } from '../actions/ingredients';
+import { OrderInfo } from './web-socket-reducer';
 
-// TODO: описать типы экшенов
+type TDataState = {
+  ingredients: BurgerIngredientsItemProps[] | [],
+  ingredientsRequest: boolean,
+  ingredientsFailed: boolean
+}
 
-const dataInitialState = {
+const dataInitialState : TDataState = {
   ingredients: [],
   ingredientsRequest: false,
   ingredientsFailed: false,
 }
 
-export const ingredientReducer = (state = dataInitialState, action: any) => {
+export const ingredientReducer = (state = dataInitialState, action: BurgerIngredientsAction) : TDataState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
@@ -50,12 +58,19 @@ export const ingredientReducer = (state = dataInitialState, action: any) => {
   }
 }
 
-const modalInitialState = {
+type TModalState = {
+  isModalOpen: boolean, 
+  selectedIngredient: BurgerIngredientsItemProps | null,
+  selectedOrder: OrderInfo | null
+}
+
+const modalInitialState : TModalState = {
   isModalOpen: false, 
-  selectedIngredient: null
+  selectedIngredient: null,
+  selectedOrder: null
 } 
  
-export const modalReducer = (state = modalInitialState, action: any) => {
+export const modalReducer = (state = modalInitialState, action: IngredientModalAction) : TModalState => {
   switch (action.type) {
     case OPEN_INGREDIENT_MODAL:
       return {
@@ -63,51 +78,40 @@ export const modalReducer = (state = modalInitialState, action: any) => {
         isModalOpen: true,
         selectedIngredient: action.ingredient
       }
+    case OPEN_WS_ORDER_MODAL: 
+    return {
+      ...state,
+      isModalOpen: true,
+      selectedOrder: action.order
+    }
     case CLOSE_INGREDIENT_MODAL:
       return {
         ...state,
         isModalOpen: false,
         selectedIngredient: null
       }
+      case CLOSE_WS_ORDER_MODAL:
+        return {
+          ...state,
+          isModalOpen: false,
+          selectedOrder: null
+        }
     default:
       return state
   }
 }
 
-interface BurgerConstructorState {
+type TBurgerConstructorState = {
   bun: BurgerIngredientsItemProps | null,
   ingredients: BurgerIngredientsItemProps[] 
 }
 
-const burgerConstructorInitialState: BurgerConstructorState = {
+const burgerConstructorInitialState: TBurgerConstructorState = {
   bun: null,
   ingredients: [],
 }
 
-interface AddIngredientAction {
-  type: typeof ADD_INGREDIENT,
-  ingredient: BurgerIngredientsItemProps
-} 
-
-interface DeleteIngredientAction {
-  type: typeof DELETE_INGREDIENT,
-  uuid: string
-}
-
-interface SortIngredientsAction {
-  type: typeof SORT_INGREDIENTS,
-  newIngredients: BurgerIngredientsItemProps[]
-}
-
-interface ClearConstructorIngredientAction {
-  type: typeof CLEAR_CONSTRUCTOR_INGREDIENTS
-}
-
-type ActionTypes = 
-  AddIngredientAction | DeleteIngredientAction | 
-  SortIngredientsAction | ClearConstructorIngredientAction;
-
-export const burgerConstructorReducer = (state = burgerConstructorInitialState, action: ActionTypes) => {
+export const burgerConstructorReducer = (state = burgerConstructorInitialState, action: BurgerConstructorAction) : TBurgerConstructorState => {
   switch (action.type) {
     case ADD_INGREDIENT:
       let newState = { ...state }
@@ -140,21 +144,21 @@ export const burgerConstructorReducer = (state = burgerConstructorInitialState, 
   }
 }
 
-interface OrderState {
-  orderNumber: number | null
+type TOrderState = {
+  orderNumber: string | null
   orderRequest: boolean
   orderFailed: boolean
   isModalOpen: boolean 
 }
 
-const orderInitialState : OrderState = {
+const orderInitialState : TOrderState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,
   isModalOpen: false
 }
 
-export const burgerOrderReducer = (state = orderInitialState, action: any) => {
+export const burgerOrderReducer = (state = orderInitialState, action: OrderAction) : TOrderState => {
   switch (action.type) {
     case CREATE_ORDER_REQUEST: 
       return {

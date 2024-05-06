@@ -17,6 +17,7 @@ import { useAppDispatch } from '../../types/hooks';
 import { getUser } from '../../services/actions/user';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
 import { getIngredients } from '../../services/actions/ingredients';
+import FeedOrdersModal from '../feed-orders/feed-orders-modal/feed-orders-modal';
 
 function App() {
 
@@ -46,14 +47,16 @@ function App() {
           <Route path='/register' element={<OnlyUnAuth component={<RegisterPage/>}/>}/>
           <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPasswordPage/>}/>}/>
           <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPasswordPage/>}/>}/>
-          <Route path='/feed' element={<FeedPage/>}/>
           <Route path='/profile' element={<OnlyAuth component={<ProfilePage/>}/>}>
             <Route index element={<ProfileForm />} />
             <Route path='/profile' element={<ProfileForm/>}/>
             <Route path='orders' element={<ProfileOrders/>}/>
+            <Route path='orders/:number' element={<FeedOrdersModal/>}/>
             <Route path='*' element={<NotFoundPage/>}/>
           </Route>
           <Route path='/ingredients/:id' element={<IngredientDetails/>}/>
+          <Route path='/feed' element={<FeedPage/>}/>
+          <Route path='/feed/:number' element={<FeedOrdersModal/>}/>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
 
@@ -64,6 +67,22 @@ function App() {
               element={
                 <Modal title='Детали ингредиента' handleClose={closeModal}>
                   <IngredientDetails/>
+                </Modal>
+              }
+            />
+            <Route
+              path='/feed/:number'
+              element={
+                <Modal handleClose={closeModal}>
+                  <FeedOrdersModal/>
+                </Modal>
+              }
+            />
+            <Route
+              path='profile/orders/:number'
+              element={
+                <Modal handleClose={closeModal}>
+                  <FeedOrdersModal/>
                 </Modal>
               }
             />

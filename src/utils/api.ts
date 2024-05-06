@@ -1,4 +1,5 @@
 const BASE_URL = 'https://norma.nomoreparties.space/api';
+export const WS_BASE_URL = 'wss://norma.nomoreparties.space/orders';
 
 export const checkResponse = (res:Response) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err))

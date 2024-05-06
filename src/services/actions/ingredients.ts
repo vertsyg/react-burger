@@ -2,6 +2,7 @@ import { BurgerIngredientsItemProps } from '../../components/burger-ingredients/
 import { v4 as uuidv4 } from 'uuid';
 import { AppDispatch } from '../../types/hooks';
 import { fetchData, sendOrderRequest } from '../../utils/api';
+import { OrderInfo } from '../reducers/web-socket-reducer';
 
 export const OPEN_INGREDIENT_MODAL = 'OPEN_INGREDIENT_MODAL'
 export const CLOSE_INGREDIENT_MODAL = 'CLOSE_INGREDIENT_MODAL'
@@ -21,6 +22,9 @@ export const CREATE_ORDER_ERROR = 'CREATE_ORDER_ERROR'
 export const OPEN_ORDER_MODAL = 'OPEN_ORDER_MODAL'
 export const CLOSE_ORDER_MODAL = 'CLOSE_ORDER_MODAL'
 
+export const OPEN_WS_ORDER_MODAL = 'OPEN_WS_ORDER_MODAL '
+export const CLOSE_WS_ORDER_MODAL = 'CLOSE_WS_ORDER_MODAL '
+
 export const openIngredientModal = (ingredient: BurgerIngredientsItemProps) => {
   return {
     type: OPEN_INGREDIENT_MODAL,
@@ -31,6 +35,19 @@ export const openIngredientModal = (ingredient: BurgerIngredientsItemProps) => {
 export const closeIngredientModal = () => {
   return {
     type: CLOSE_INGREDIENT_MODAL,
+  }
+}
+
+export const openWsOrderModal = (order : OrderInfo) => {
+  return {
+    type: OPEN_WS_ORDER_MODAL,
+    order
+  }
+}
+
+export const closeWsOrderModal = () => {
+  return {
+    type: CLOSE_WS_ORDER_MODAL,
   }
 }
 

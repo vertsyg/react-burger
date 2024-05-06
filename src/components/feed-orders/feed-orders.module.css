@@ -1,5 +1,8 @@
-.profileOrders {
-  width: 940px;
+.feed {
+  padding-top: 40px;  
+}
+
+.feed_orders {
   overflow-y: auto;
   height: calc(100vh - 90px - 40px - 40px - 40px - 20px);
   scrollbar-width: thin;

@@ -48,7 +48,7 @@ const IngredientItem = ({ingredient}: IngredientItemProps) => {
       className={styles.ingredient_item} 
       onClick={openIngredientsModal}
       ref = {dragRef}
-    > 
+    >
       {count !== 0 ? <Counter count={count}/> : ''}
       <img src={image} alt={name}/>
       <div className={styles.ingredient_price}>
