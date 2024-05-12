@@ -8,7 +8,7 @@ type TDataState = {
   ingredientsFailed: boolean
 }
 
-const dataInitialState : TDataState = {
+export const dataInitialState : TDataState = {
   ingredients: [],
   ingredientsRequest: false,
   ingredientsFailed: false,

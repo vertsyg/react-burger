@@ -19,7 +19,7 @@ export type TWSOrdersState = {
   wsError?: Event
 }
 
-const WSFeedInitialState : TWSOrdersState = {
+export const WSFeedInitialState : TWSOrdersState = {
   wsConnected: false,
   orders: [],
   total: 0,

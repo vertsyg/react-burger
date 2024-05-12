@@ -9,7 +9,7 @@ type TModalState = {
   selectedOrder: OrderInfo| null
 }
 
-const modalInitialState : TModalState = {
+export const modalInitialState : TModalState = {
   isModalOpen: false, 
   selectedIngredient: null,
   selectedOrder: null
@@ -24,23 +24,23 @@ export const modalReducer = (state = modalInitialState, action: IngredientModalA
         selectedIngredient: action.ingredient
       }
     case OPEN_WS_ORDER_MODAL: 
-    return {
-      ...state,
-      isModalOpen: true,
-      selectedOrder: action.order
-    }
+      return {
+        ...state,
+        isModalOpen: true,
+        selectedOrder: action.order
+      }
     case CLOSE_INGREDIENT_MODAL:
       return {
         ...state,
         isModalOpen: false,
         selectedIngredient: null
       }
-      case CLOSE_WS_ORDER_MODAL:
-        return {
-          ...state,
-          isModalOpen: false,
-          selectedOrder: null
-        }
+    case CLOSE_WS_ORDER_MODAL:
+      return {
+        ...state,
+        isModalOpen: false,
+        selectedOrder: null
+      }
     default:
       return state
   }

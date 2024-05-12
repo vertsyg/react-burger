@@ -30,7 +30,7 @@ type TUserState = {
   isPasswordResetSuccess: boolean
 }
 
-const userInitialState : TUserState = {
+export const userInitialState : TUserState = {
   user: {
     name: '',
     email: ''

@@ -8,7 +8,7 @@ type TOrderState = {
   isModalOpen: boolean 
 }
 
-const orderInitialState : TOrderState = {
+export const orderInitialState : TOrderState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,

@@ -2,7 +2,7 @@ import { WsProfileOrdersAction } from "../../types/actions/web-socket"
 import { WS_PROFILE_GET_ORDERS, WS_PROFILE_ORDERS_CLOSE, WS_PROFILE_ORDERS_ERROR, WS_PROFILE_ORDERS_OPEN } from "../actions/web-socket"
 import { TWSOrdersState } from "./ws-feed-reducer"
 
-const WSProfileOrdersInitialState : TWSOrdersState = {
+export const WSProfileOrdersInitialState : TWSOrdersState = {
   wsConnected: false,
   orders: [],
   total: 0,

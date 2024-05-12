@@ -4,10 +4,10 @@ import { ADD_INGREDIENT, CLEAR_CONSTRUCTOR_INGREDIENTS, DELETE_INGREDIENT, SORT_
 
 type TBurgerConstructorState = {
   bun: BurgerIngredientsItemProps | null,
-  ingredients: BurgerIngredientsItemProps[] 
+  ingredients: BurgerIngredientsItemProps[]
 }
 
-const burgerConstructorInitialState: TBurgerConstructorState = {
+export const burgerConstructorInitialState: TBurgerConstructorState = {
   bun: null,
   ingredients: [],
 }
