@@ -1,5 +1,5 @@
 import { CurrencyIcon, FormattedDate } from "@ya.praktikum/react-developer-burger-ui-components";
-import { OrderInfo } from "../../../services/reducers/web-socket-reducer";
+import { OrderInfo } from "../../../services/reducers/ws-feed-reducer";
 import { getBurgerIngredients } from "../../../services/selectors";
 import { useAppDispatch, useAppSelector } from "../../../types/hooks";
 

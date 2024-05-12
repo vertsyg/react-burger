@@ -2,7 +2,7 @@ import { BurgerIngredientsItemProps } from '../../components/burger-ingredients/
 import { v4 as uuidv4 } from 'uuid';
 import { AppDispatch } from '../../types/hooks';
 import { fetchData, sendOrderRequest } from '../../utils/api';
-import { OrderInfo } from '../reducers/web-socket-reducer';
+import { OrderInfo } from '../reducers/ws-feed-reducer';
 
 export const OPEN_INGREDIENT_MODAL = 'OPEN_INGREDIENT_MODAL'
 export const CLOSE_INGREDIENT_MODAL = 'CLOSE_INGREDIENT_MODAL'

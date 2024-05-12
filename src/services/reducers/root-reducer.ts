@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
-import { burgerConstructorReducer, burgerOrderReducer, ingredientReducer, modalReducer } from "./ingredients-reducer";
+import { ingredientsReducer } from "./ingredients-reducer";
 import { userReducer } from "./user-reducer";
-import { WSFeedReducer, WSProfileOrdersReducer } from "./web-socket-reducer";
+import { WSFeedReducer } from "./ws-feed-reducer";
+import { modalReducer } from "./modal-reducer";
+import { burgerConstructorReducer } from "./constructor-reducer";
+import { burgerOrderReducer } from "./burger-order-reducer";
+import { WSProfileOrdersReducer } from "./ws-profile-orders-reducer";
 
 export const rootReducer = combineReducers({
-  ingredients: ingredientReducer,
+  ingredients: ingredientsReducer,
   modal: modalReducer,
   burgerConstructor: burgerConstructorReducer,
   order: burgerOrderReducer,

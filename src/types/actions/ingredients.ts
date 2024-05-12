@@ -1,6 +1,6 @@
 import { BurgerIngredientsItemProps } from "../../components/burger-ingredients/ingredient-item/ingredient-item";
 import { ADD_INGREDIENT, CLEAR_CONSTRUCTOR_INGREDIENTS, CLOSE_INGREDIENT_MODAL, CLOSE_ORDER_MODAL, CLOSE_WS_ORDER_MODAL, CREATE_ORDER_ERROR, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, DELETE_INGREDIENT, GET_INGREDIENTS_ERROR, GET_INGREDIENTS_REQUEST, GET_INGREDIENTS_SUCCESS, OPEN_INGREDIENT_MODAL, OPEN_ORDER_MODAL, OPEN_WS_ORDER_MODAL, SORT_INGREDIENTS } from "../../services/actions/ingredients";
-import { OrderInfo } from "../../services/reducers/web-socket-reducer";
+import { OrderInfo } from "../../services/reducers/ws-feed-reducer";
 
 interface AddIngredientAction {
   type: typeof ADD_INGREDIENT,
