@@ -63,39 +63,41 @@ const BurgerConstructor = () => {
         </Modal>
       }
       <section ref={dropTarget} className={styles.burger_constructor}>
-      {
-        !bun && ingredients.length === 0 && <div>Перенесите сюда булку и ингредиенты</div>
-      }
-      {
-        bun &&
-        <ConstructorElement
-          type="top"
-          isLocked={true}
-          text={`${bun.name} (верх)`}
-          price={bun.price}
-          thumbnail={bun.image}
-        />
-      }
-      <div className={styles.ingredients}>
-        {ingredients.map((cartItem, index) => 
-          <ConstructorIngredient 
-            key={cartItem.uuid} 
-            ingredient={cartItem}
-            moveCard={moveCard}
-            index={index}
-          />
-        )}
-      </div> 
-      {
-        bun &&
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text={`${bun.name} (низ)`}
-          price={bun.price}
-          thumbnail={bun.image}
-        />
-      }
+        <div className={styles.drop_zone}>
+          {
+            !bun && ingredients.length === 0 && <div>Перенесите сюда булку и ингредиенты</div>
+          }
+          {
+            bun &&
+            <ConstructorElement
+              type="top"
+              isLocked={true}
+              text={`${bun.name} (верх)`}
+              price={bun.price}
+              thumbnail={bun.image}
+            />
+          }
+          <div className={styles.ingredients}>
+            {ingredients.map((cartItem, index) => 
+              <ConstructorIngredient 
+                key={cartItem.uuid} 
+                ingredient={cartItem}
+                moveCard={moveCard}
+                index={index}
+              />
+            )}
+          </div> 
+          {
+            bun &&
+            <ConstructorElement
+              type="bottom"
+              isLocked={true}
+              text={`${bun.name} (низ)`}
+              price={bun.price}
+              thumbnail={bun.image}
+            />
+          }
+        </div>
         <div className={styles.order}>
           <div className={styles.order_price}>
             <p className="text text_type_digits-medium">
