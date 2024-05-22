@@ -21,7 +21,6 @@ import { FORGOT_PASSWORD_ERROR,
   UPDATE_USER_REQUEST, 
   UPDATE_USER_SUCCESS } from '../actions/user'
 
-
 type TUserState = {
   user: UserInfo,
   isAuth: boolean,
@@ -31,7 +30,7 @@ type TUserState = {
   isPasswordResetSuccess: boolean
 }
 
-const userInitialState : TUserState = {
+export const userInitialState : TUserState = {
   user: {
     name: '',
     email: ''

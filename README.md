@@ -4,7 +4,7 @@
 
 ## Запуск проекта
 
-### Введите в терминале:
+### 1. Введите в терминале:
 
 >git clone https://github.com/vertsyg/react-burger.git
 
@@ -14,9 +14,13 @@
 
 Откройте [http://localhost:3000](http://localhost:3000), чтобы посмотреть проект.
 
+### 2. Проект также можно открыть на github-pages по ссылке: https://vertsyg.github.io/react-burger
+
 ## Технологии:
 - React `v18`
 - Redux
 - TypeScript
 - React DnD
 - React-router-dom `v6`
+- Jest
+- Cypress

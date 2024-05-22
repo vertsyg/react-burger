@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
-import { burgerOrderReducer, burgerConstructorReducer, ingredientReducer, modalReducer } from './reducers/ingredients-reducer';
+import { ingredientsReducer } from './reducers/ingredients-reducer';
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './reducers/user-reducer';
 import { WS_FEED_CLOSE, WS_FEED_ERROR, WS_FEED_GET_ORDERS, WS_FEED_INIT, WS_FEED_OPEN, WS_PROFILE_GET_ORDERS, WS_PROFILE_ORDERS_CLOSE, WS_PROFILE_ORDERS_ERROR, WS_PROFILE_ORDERS_INIT, WS_PROFILE_ORDERS_OPEN } from './actions/web-socket';
 import { TWSActions, socketMiddleware } from './middleware/socket-middleware';
-import { WSFeedReducer, WSProfileOrdersReducer } from './reducers/web-socket-reducer';
+import { WSFeedReducer } from './reducers/ws-feed-reducer';
+import { modalReducer } from './reducers/modal-reducer';
+import { burgerConstructorReducer } from './reducers/constructor-reducer';
+import { burgerOrderReducer } from './reducers/burger-order-reducer';
+import { WSProfileOrdersReducer } from './reducers/ws-profile-orders-reducer';
 
 const rootReducer = combineReducers({
-  ingredients: ingredientReducer,
+  ingredients: ingredientsReducer,
   modal: modalReducer,
   burgerConstructor: burgerConstructorReducer,
   order: burgerOrderReducer,

@@ -1,5 +1,5 @@
 import { WS_FEED_CLOSE, WS_FEED_ERROR, WS_FEED_GET_ORDERS, WS_FEED_INIT, WS_FEED_OPEN, WS_PROFILE_GET_ORDERS, WS_PROFILE_ORDERS_CLOSE, WS_PROFILE_ORDERS_ERROR, WS_PROFILE_ORDERS_INIT, WS_PROFILE_ORDERS_OPEN } from "../../services/actions/web-socket"
-import { OrderInfo } from "../../services/reducers/web-socket-reducer"
+import { OrderInfo } from "../../services/reducers/ws-feed-reducer"
 
 interface WsFeedInitAction {
   type: typeof WS_FEED_INIT,

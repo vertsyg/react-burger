@@ -2,12 +2,12 @@
   padding-top: 100px;
 }
 
-.burger_constructor > *:first-child,
-.burger_constructor > *:nth-last-child(2) {
+.drop_zone > *:first-child, 
+.drop_zone > *:last-child {
   margin-left: 32px;
 }
 
-.burger_constructor > *:nth-last-child(2) {
+.drop_zone > *:last-child {
   margin-top: 3px;
 }
 
