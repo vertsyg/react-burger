@@ -1,5 +1,8 @@
 import { BASE_URL } from "../../src/utils/api"
 
+const INGREDIENT_LINK = '[class^=ingredients-group_link]'
+const DROP_ZONE = '[class^=burger-constructor_drop_zone]'
+
 describe('Application', () => {
   beforeEach(() => {
     cy.visit('/')
@@ -21,20 +24,21 @@ describe('Application', () => {
   })
 
   it('drag&drop is working correctly', () => {
-    cy.get('[class^=ingredients-group_link]').contains('Краторная булка N-200i').trigger('dragstart')
-    cy.get('[class^=burger-constructor_drop_zone]').trigger('drop')
+    cy.get(INGREDIENT_LINK).contains('Краторная булка N-200i').trigger('dragstart')
+    cy.get(DROP_ZONE).trigger('drop')
 
-    cy.get('[class^=ingredients-group_link]').contains('Говяжий метеорит (отбивная)').trigger('dragstart')
-    cy.get('[class^=burger-constructor_drop_zone]').trigger('drop')
+    cy.get(INGREDIENT_LINK).contains('Говяжий метеорит (отбивная)').trigger('dragstart')
+    cy.get(DROP_ZONE).trigger('drop')
   })
 
   it('create order correctly', () => {
 
-    cy.get('[class^=ingredients-group_link]').contains('Краторная булка N-200i').trigger('dragstart')
-    cy.get('[class^=burger-constructor_drop_zone]').trigger('drop')
+    cy.get(INGREDIENT_LINK).contains('Краторная булка N-200i').trigger('dragstart')
+    cy.get(DROP_ZONE).trigger('drop')
 
-    cy.get('[class^=ingredients-group_link]').contains('Говяжий метеорит (отбивная)').trigger('dragstart')
-    cy.get('[class^=burger-constructor_drop_zone]').trigger('drop')
+
+    cy.get(INGREDIENT_LINK).contains('Говяжий метеорит (отбивная)').trigger('dragstart')
+    cy.get(DROP_ZONE).trigger('drop')
 
     cy.get('button').contains('Оформить заказ').click()
 
